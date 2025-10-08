@@ -22,15 +22,15 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-black/60 backdrop-blur-md z-50 border-b border-white/10">
       <div className="container mx-auto px-4">
-        <div className="flex items-center h-16">
-          {/* Phone Number - Left (hidden on mobile) */}
-          <div className="hidden lg:flex items-center space-x-2 w-48 group cursor-pointer">
+        <div className="flex items-center justify-between h-16">
+          {/* Phone Number - Always visible */}
+          <div className="flex items-center space-x-2 group cursor-pointer">
             <Phone className="w-4 h-4 text-amber-400 transition-all duration-300 group-hover:scale-110 group-hover:text-amber-300" />
             <span className="text-sm font-medium text-white transition-all duration-300 group-hover:text-amber-400">01 87 00 01 81</span>
           </div>
 
-          {/* Centered Navigation with Logo */}
-          <div className="flex-1 flex justify-center">
+          {/* Centered Navigation with Logo - Hidden on mobile */}
+          <div className="hidden lg:flex flex-1 justify-center">
             <nav className="flex items-center space-x-8">
               {leftNavigation.map((item) => (
                 <Link
@@ -68,8 +68,9 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* Instagram - Right */}
-          <div className="flex items-center space-x-4 w-48 justify-end">
+          {/* Right side - Instagram + Menu button */}
+          <div className="flex items-center space-x-4">
+            {/* Instagram */}
             <Link
               href="https://www.instagram.com/the_experts_barbershop/"
               target="_blank"
@@ -79,7 +80,7 @@ const Header = () => {
               <Instagram className="w-5 h-5 transition-all duration-300 group-hover:rotate-12" />
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
-            
+
             {/* Mobile menu button */}
             <button
               className="lg:hidden flex items-center"
