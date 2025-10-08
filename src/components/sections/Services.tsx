@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Scissors, Zap, Crown, Sparkles, Palette, SprayCan, Clock } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Scissors, Zap, Palette, SprayCan, Clock } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -12,7 +12,7 @@ const Services = () => {
 
   useEffect(() => {
     // Service cards hover animations
-    serviceCardRefs.current.forEach((card, index) => {
+    serviceCardRefs.current.forEach((card) => {
       if (card) {
         const icon = card.querySelector('.service-icon');
         const title = card.querySelector('.service-title');
@@ -190,7 +190,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative overflow-hidden">
+    <section id="services" className="relative overflow-hidden" role="main" aria-labelledby="services-heading">
       {/* Section Services - Fond sombre */}
       <div className="section-padding relative" style={{ backgroundColor: '#151515' }}>
         <div className="section-container relative z-10">
@@ -204,7 +204,7 @@ const Services = () => {
             <div className="section-badge">
               <span className="section-badge-text">Services</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+            <h2 id="services-heading" className="text-4xl md:text-5xl font-bold text-white mb-2">
               Nos <span className="text-amber-600">Services</span>
             </h2>
           </motion.div>
@@ -220,7 +220,7 @@ const Services = () => {
                 className="group"
               >
                 <div 
-                  ref={el => serviceCardRefs.current[index] = el}
+                  ref={el => { serviceCardRefs.current[index] = el; }}
                   className="bg-white rounded-lg p-8 text-center hover:bg-gray-50 transition-all duration-300 cursor-pointer h-64 flex flex-col justify-center shadow-lg hover:shadow-xl"
                 >
                   <div className="flex justify-center mb-6">
@@ -269,7 +269,7 @@ const Services = () => {
                 viewport={{ once: true, margin: "-100px" }}
               >
                 <Card 
-                  ref={el => pricingCardRefs.current[index] = el}
+                  ref={el => { pricingCardRefs.current[index] = el; }}
                   className="h-full card-base border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
                   <CardHeader className="text-center pb-4">

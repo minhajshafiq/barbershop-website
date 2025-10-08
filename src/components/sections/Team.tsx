@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { Award, Star, Scissors } from "lucide-react";
+import { Star, Scissors } from "lucide-react";
 
 const Team = () => {
   const teamMembers = [

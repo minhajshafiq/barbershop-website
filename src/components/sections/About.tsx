@@ -20,7 +20,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
+    <section id="about" className="section-padding relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="about-heading">
       {/* Background decoration */}
       <div className="background-decoration">
         <div className="background-decoration-shape top-1/4 right-20 w-48 h-48 bg-amber-400"></div>
@@ -38,12 +38,12 @@ const About = () => {
             <div className="section-badge">
               <span className="section-badge-text">À propos</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
               À propos de <span className="text-amber-600">nous</span>
             </h2>
             <p className="text-lg text-gray-300 mb-6">
-              Depuis 2010, The Experts Barber Shop perpétue l'art traditionnel 
-              de la coiffure masculine tout en s'adaptant aux tendances modernes. 
+              Depuis 2010, The Experts Barber Shop perpétue l&apos;art traditionnel 
+              de la coiffure masculine tout en s&apos;adaptant aux tendances modernes. 
               Notre équipe de barbiers expérimentés vous garantit une expérience 
               unique dans un cadre chaleureux et professionnel.
             </p>
@@ -58,7 +58,7 @@ const About = () => {
             
             <p className="text-lg text-gray-300 mb-8">
               Nous croyons que chaque homme mérite de se sentir confiant et élégant. 
-              C'est pourquoi nous nous engageons à fournir des services de qualité 
+              C&apos;est pourquoi nous nous engageons à fournir des services de qualité 
               supérieure avec une attention particulière aux détails.
             </p>
             
@@ -96,7 +96,7 @@ const About = () => {
           >
             <ImageSlider 
               images={salonImages}
-              alt="The Experts Barber Shop - Intérieur du salon"
+              alt="The Experts Barber Shop - Photos de l'intérieur du salon de coiffure masculine à Pantin"
               className="w-full"
             />
             

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Clock, Phone, Facebook, Instagram, Twitter } from "lucide-react";
+import { MapPin, Phone, Facebook, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="flex justify-center">
               <Image 
                 src="/LOGO.jpg" 
-                alt="The Experts Barber Shop Logo" 
+                alt="The Experts Barber Shop - Logo du salon de coiffure masculine professionnel à Pantin" 
                 width={128}
                 height={128}
                 className="object-contain"

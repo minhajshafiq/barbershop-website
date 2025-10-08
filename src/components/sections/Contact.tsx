@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { MapPin, Phone, Clock, Bus, Train } from "lucide-react";
 
 const Contact = () => {
   const contactInfo = [
@@ -23,8 +22,21 @@ const Contact = () => {
     }
   ];
 
+  const transportInfo = [
+    {
+      icon: <Bus className="w-6 h-6 text-amber-600" />,
+      title: "Bus",
+      content: "Ligne 249\nArrêt Jean Lolive"
+    },
+    {
+      icon: <Train className="w-6 h-6 text-amber-600" />,
+      title: "Métro",
+      content: "Ligne 5\nStation Hoche"
+    }
+  ];
+
   return (
-    <section id="contact" className="section-padding text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
+    <section id="contact" className="section-padding text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="contact-heading">
       {/* Background decoration */}
       <div className="background-decoration opacity-10">
         <div className="background-decoration-shape top-20 right-20 w-32 h-32 bg-amber-400"></div>
@@ -41,7 +53,7 @@ const Contact = () => {
           <div className="section-badge">
             <span className="section-badge-text">Contact</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
+          <h2 id="contact-heading" className="text-4xl md:text-5xl font-bold text-white mb-2">
             Contactez <span className="text-amber-600">nous</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -85,6 +97,35 @@ const Contact = () => {
                       </div>
                     </motion.div>
                   ))}
+                  
+                  {/* Section Transport */}
+                  <div className="border-t border-gray-200 pt-6">
+                    <h4 className="font-semibold text-lg mb-4 text-gray-700">Transport en commun</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {transportInfo.map((transport, index) => (
+                        <motion.div
+                          key={transport.title}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.8, delay: (contactInfo.length + index) * 0.1 }}
+                          viewport={{ once: true, margin: "-100px" }}
+                          className="flex items-start space-x-3"
+                        >
+                          <div className="flex-shrink-0 mt-1">
+                            {transport.icon}
+                          </div>
+                          <div>
+                            <h5 className="font-semibold text-base mb-1 text-gray-700">
+                              {transport.title}
+                            </h5>
+                            <p className="text-gray-600 whitespace-pre-line text-sm font-medium">
+                              {transport.content}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -117,7 +158,7 @@ const Contact = () => {
               </h3>
               <p className="text-gray-300 mb-4">
                 Situé au 101 Av. Jean Lolive à Pantin, nous sommes facilement accessibles 
-                en transport en commun et en voiture.
+                en transport en commun (Bus 249, Métro ligne 5) et en voiture.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a

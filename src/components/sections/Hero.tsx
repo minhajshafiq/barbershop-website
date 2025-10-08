@@ -6,12 +6,12 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src="/hero.jpg"
-          alt="The Experts Barber Shop"
+          alt="The Experts Barber Shop - Salon de coiffure masculine professionnel à Pantin"
           fill
           className="object-cover"
           priority
