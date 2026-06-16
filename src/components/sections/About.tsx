@@ -20,7 +20,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section-padding relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="about-heading">
+    <section id="about" className="scroll-mt-20 section-padding relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="about-heading">
       {/* Background decoration */}
       <div className="background-decoration">
         <div className="background-decoration-shape top-1/4 right-20 w-48 h-48 bg-amber-400"></div>

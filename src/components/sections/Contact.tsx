@@ -36,7 +36,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="section-padding text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="contact-heading">
+    <section id="contact" className="scroll-mt-20 section-padding text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="contact-heading">
       {/* Background decoration */}
       <div className="background-decoration opacity-10">
         <div className="background-decoration-shape top-20 right-20 w-32 h-32 bg-amber-400"></div>

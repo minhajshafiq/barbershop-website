@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Facebook, Instagram, Twitter } from "lucide-react";
+import { MapPin, Phone, Instagram } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -51,12 +51,6 @@ const Footer = () => {
             <div className="flex justify-center space-x-4">
               <a href="https://www.instagram.com/the_experts_barbershop/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-amber-400 transition-colors">
                 <Instagram className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-white hover:text-amber-400 transition-colors">
-                <Facebook className="w-6 h-6" />
-              </a>
-              <a href="#" className="text-white hover:text-amber-400 transition-colors">
-                <Twitter className="w-6 h-6" />
               </a>
             </div>
           </div>

@@ -190,7 +190,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="relative overflow-hidden" role="main" aria-labelledby="services-heading">
+    <section id="services" className="scroll-mt-20 relative overflow-hidden" role="main" aria-labelledby="services-heading">
       {/* Section Services - Fond sombre */}
       <div className="section-padding relative" style={{ backgroundColor: '#151515' }}>
         <div className="section-container relative z-10">

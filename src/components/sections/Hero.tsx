@@ -82,10 +82,11 @@ const Hero = () => {
             >
               Réserve maintenant
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
               className="button-secondary text-lg px-8 py-4 w-64 sm:w-auto mx-auto sm:mx-0"
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Nos services
             </Button>

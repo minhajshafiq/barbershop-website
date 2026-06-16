@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone, Instagram } from "lucide-react";
@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   const leftNavigation = [
     { name: "Accueil", href: "/" },
@@ -19,6 +20,28 @@ const Header = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+  useEffect(() => {
+    const sectionIds = ["about", "services", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      () => {
+        const mid = window.innerHeight / 2;
+        const current = sections.find((section) => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= mid && rect.bottom >= mid;
+        });
+        setActiveSection(current ? `#${current.id}` : "");
+      },
+      { rootMargin: "-50% 0px -50% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header className="fixed top-0 w-full bg-black/60 backdrop-blur-md z-50 border-b border-white/10">
       <div className="container mx-auto px-4">
@@ -28,6 +51,18 @@ const Header = () => {
             <Phone className="w-4 h-4 text-amber-400 transition-all duration-300 group-hover:scale-110 group-hover:text-amber-300" />
             <span className="text-sm font-medium text-white transition-all duration-300 group-hover:text-amber-400">01 87 00 01 81</span>
           </div>
+
+          {/* Logo - Visible on mobile only, centered nav has its own on desktop */}
+          <Link href="/" className="flex lg:hidden items-center">
+            <Image
+              src="/LOGO.jpg"
+              alt="The Experts Barber Shop - Logo du salon de coiffure masculine à Pantin"
+              width={44}
+              height={44}
+              className="object-contain rounded-full"
+              priority
+            />
+          </Link>
 
           {/* Centered Navigation with Logo - Hidden on mobile */}
           <div className="hidden lg:flex flex-1 justify-center">
@@ -39,22 +74,26 @@ const Header = () => {
                   className="relative text-white hover:text-amber-400 transition-all duration-300 font-medium group"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></div>
+                  <div
+                    className={`absolute bottom-0 left-0 h-0.5 bg-amber-400 transition-all duration-300 ${
+                      activeSection === item.href ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  ></div>
                 </Link>
               ))}
-              
+
               {/* Centered Logo */}
               <Link href="/" className="flex items-center mx-8">
-                <Image 
-                  src="/LOGO.jpg" 
-                  alt="The Experts Barber Shop - Logo du salon de coiffure masculine à Pantin" 
+                <Image
+                  src="/LOGO.jpg"
+                  alt="The Experts Barber Shop - Logo du salon de coiffure masculine à Pantin"
                   width={60}
                   height={60}
                   className="object-contain"
                   priority
                 />
               </Link>
-              
+
               {rightNavigation.map((item) => (
                 <Link
                   key={item.name}
@@ -62,7 +101,11 @@ const Header = () => {
                   className="relative text-white hover:text-amber-400 transition-all duration-300 font-medium group"
                 >
                   <span className="relative z-10">{item.name}</span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 transition-all duration-300 group-hover:w-full"></div>
+                  <div
+                    className={`absolute bottom-0 left-0 h-0.5 bg-amber-400 transition-all duration-300 ${
+                      activeSection === item.href ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  ></div>
                 </Link>
               ))}
             </nav>

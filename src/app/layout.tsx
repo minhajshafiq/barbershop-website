@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://theexperts-barbershop.fr"),
   title: "The Experts Barber Shop - Salon de Coiffure Masculine à Pantin | Depuis 2010",
   description: "Salon de coiffure masculine professionnel à Pantin depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au 01 87 00 01 81. Ouvert 7j/7.",
   keywords: "barbershop Pantin, coiffure masculine Pantin, rasage traditionnel, coupe homme, salon de coiffure 93, coiffeur Pantin, barber shop Paris, coiffure homme professionnel, The Experts Barber Shop",
