@@ -1,92 +1,113 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
+
+const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+
+const navigation = [
+  { name: "Accueil", href: "/" },
+  { name: "Services", href: "#services" },
+  { name: "Tarifs", href: "#tarifs" },
+  { name: "Le salon", href: "#salon" },
+  { name: "L’équipe", href: "#equipe" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="text-white" style={{ backgroundColor: '#151515' }}>
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 text-center">
-          {/* Left Section - Contact Info */}
-          <div className="space-y-4">
-            <div className="flex items-start space-x-3 justify-center">
-              <MapPin className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
-              <div>
-                <p className="text-white">101 Av. Jean Lolive, 93500 Pantin</p>
-                <p className="text-white text-sm mt-1">Ouvert tous les jours de 9h30 à 20h (7/7)</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3 justify-center">
-              <Phone className="w-5 h-5 text-white" />
-              <span className="text-white">01 87 00 01 81</span>
-            </div>
-            
-            <button 
-              className="button-primary px-6 py-2 mx-auto"
-              onClick={() => window.open('https://www.planity.com/the-expert-93500-pantin-3v3', '_blank')}
-            >
-              Réserve maintenant
-            </button>
+    <footer className="bg-coal pb-24 lg:pb-0">
+      <div className="shell-wide pt-16 sm:pt-20">
+        {/* Phrase de marque */}
+        <div className="flex flex-wrap items-end justify-between gap-8 border-b border-line-dark pb-12">
+          <p className="font-display max-w-2xl text-3xl leading-tight font-bold uppercase sm:text-4xl lg:text-5xl">
+            Une bonne coupe ne change pas qui vous êtes.{" "}
+            <span className="text-brand">Elle le révèle.</span>
+          </p>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            Réserver un créneau
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+
+        {/* Colonnes */}
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Image
+              src="/LOGO.jpg"
+              alt="The Experts Barber Shop"
+              width={72}
+              height={72}
+              className="rounded-full object-contain"
+            />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-smoke">
+              Barber shop de quartier à Pantin, depuis 2010.
+            </p>
           </div>
 
-          {/* Center Section - Logo & Social */}
-          <div className="space-y-6">
-            {/* Logo */}
-            <div className="flex justify-center">
-              <Image 
-                src="/LOGO.jpg" 
-                alt="The Experts Barber Shop - Logo du salon de coiffure masculine professionnel à Pantin" 
-                width={128}
-                height={128}
-                className="object-contain"
-              />
-            </div>
-            
-            {/* Social Media Icons */}
-            <div className="flex justify-center space-x-4">
-              <a href="https://www.instagram.com/the_experts_barbershop/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-amber-400 transition-colors">
-                <Instagram className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right Section - Menu */}
-          <div className="md:text-left">
-            <h3 className="text-lg font-bold text-white mb-4">Menu</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-white hover:text-amber-400 transition-colors">
-                  Accueil
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="text-white hover:text-amber-400 transition-colors">
-                  À propos
-                </Link>
-              </li>
-              <li>
-                <Link href="#services" className="text-white hover:text-amber-400 transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="text-white hover:text-amber-400 transition-colors">
-                  Contact
-                </Link>
-              </li>
+          <nav aria-label="Navigation pied de page">
+            <h3 className="mb-4 text-xs font-bold tracking-[0.2em] text-smoke uppercase">
+              Menu
+            </h3>
+            <ul className="space-y-2.5">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-ivory/85 transition-colors hover:text-brand"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </nav>
+
+          <div>
+            <h3 className="mb-4 text-xs font-bold tracking-[0.2em] text-smoke uppercase">
+              Le salon
+            </h3>
+            <address className="space-y-2.5 text-sm text-ivory/85 not-italic">
+              <p>
+                101 avenue Jean-Lolive
+                <br />
+                93500 Pantin
+              </p>
+              <p>Tous les jours · 9h30 – 20h</p>
+              <p>
+                <a href="tel:0187000181" className="transition-colors hover:text-brand">
+                  01 87 00 01 81
+                </a>
+              </p>
+            </address>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-xs font-bold tracking-[0.2em] text-smoke uppercase">
+              Suivez-nous
+            </h3>
+            <a
+              href="https://www.instagram.com/the_experts_barbershop/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-ivory/85 transition-colors hover:text-brand"
+            >
+              <Instagram className="h-4 w-4" aria-hidden />
+              @the_experts_barbershop
+            </a>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-white text-sm">
-            @ {currentYear} The Experts Barber Shop. All rights reserved
+        {/* Filet fin avant les mentions */}
+        <div className="border-t border-line-dark py-6">
+          <p className="text-xs text-smoke">
+            © {currentYear} The Experts Barber Shop — Tous droits réservés.
           </p>
         </div>
       </div>

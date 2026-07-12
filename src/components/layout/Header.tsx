@@ -3,193 +3,148 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Phone, Instagram } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+
+const navigation = [
+  { name: "Accueil", href: "/" },
+  { name: "Services", href: "#services" },
+  { name: "Tarifs", href: "#tarifs" },
+  { name: "Le salon", href: "#salon" },
+  { name: "L’équipe", href: "#equipe" },
+  { name: "Contact", href: "#contact" },
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
-
-  const leftNavigation = [
-    { name: "Accueil", href: "/" },
-    { name: "À propos", href: "#about" },
-  ];
-
-  const rightNavigation = [
-    { name: "Services", href: "#services" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const sectionIds = ["about", "services", "contact"];
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    const observer = new IntersectionObserver(
-      () => {
-        const mid = window.innerHeight / 2;
-        const current = sections.find((section) => {
-          const rect = section.getBoundingClientRect();
-          return rect.top <= mid && rect.bottom >= mid;
-        });
-        setActiveSection(current ? `#${current.id}` : "");
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 w-full bg-black/60 backdrop-blur-md z-50 border-b border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Phone Number - Always visible */}
-          <div className="flex items-center space-x-2 group cursor-pointer">
-            <Phone className="w-4 h-4 text-amber-400 transition-all duration-300 group-hover:scale-110 group-hover:text-amber-300" />
-            <span className="text-sm font-medium text-white transition-all duration-300 group-hover:text-amber-400">01 87 00 01 81</span>
-          </div>
-
-          {/* Logo - Visible on mobile only, centered nav has its own on desktop */}
-          <Link href="/" className="flex lg:hidden items-center">
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+        isScrolled || isMenuOpen
+          ? "border-b border-line-dark bg-coal/85 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <div className="shell-wide">
+        <div className="flex h-20 items-center justify-between gap-4">
+          {/* Logo */}
+          <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="The Experts Barber Shop — Accueil">
             <Image
               src="/LOGO.jpg"
-              alt="The Experts Barber Shop - Logo du salon de coiffure masculine à Pantin"
-              width={44}
-              height={44}
-              className="object-contain rounded-full"
+              alt="The Experts Barber Shop"
+              width={56}
+              height={56}
+              className="rounded-full object-contain"
               priority
             />
+            <span className="font-display hidden text-lg font-medium uppercase tracking-widest sm:block lg:hidden xl:block">
+              The Experts
+            </span>
           </Link>
 
-          {/* Centered Navigation with Logo - Hidden on mobile */}
-          <div className="hidden lg:flex flex-1 justify-center">
-            <nav className="flex items-center space-x-8">
-              {leftNavigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="relative text-white hover:text-amber-400 transition-all duration-300 font-medium group"
-                >
-                  <span className="relative z-10">{item.name}</span>
-                  <div
-                    className={`absolute bottom-0 left-0 h-0.5 bg-amber-400 transition-all duration-300 ${
-                      activeSection === item.href ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  ></div>
-                </Link>
-              ))}
-
-              {/* Centered Logo */}
-              <Link href="/" className="flex items-center mx-8">
-                <Image
-                  src="/LOGO.jpg"
-                  alt="The Experts Barber Shop - Logo du salon de coiffure masculine à Pantin"
-                  width={60}
-                  height={60}
-                  className="object-contain"
-                  priority
-                />
+          {/* Navigation desktop */}
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="group relative text-sm font-semibold text-ivory/90 transition-colors duration-200 hover:text-ivory"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand transition-all duration-300 group-hover:w-full" />
               </Link>
+            ))}
+          </nav>
 
-              {rightNavigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="relative text-white hover:text-amber-400 transition-all duration-300 font-medium group"
-                >
-                  <span className="relative z-10">{item.name}</span>
-                  <div
-                    className={`absolute bottom-0 left-0 h-0.5 bg-amber-400 transition-all duration-300 ${
-                      activeSection === item.href ? "w-full" : "w-0 group-hover:w-full"
-                    }`}
-                  ></div>
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          {/* Right side - Instagram + Menu button */}
-          <div className="flex items-center space-x-4">
-            {/* Instagram */}
-            <Link
-              href="https://www.instagram.com/the_experts_barbershop/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-white hover:text-amber-400 transition-all duration-300 hover:scale-110 group relative p-2 rounded-full hover:bg-amber-400/10"
+          {/* Actions à droite */}
+          <div className="flex items-center gap-4">
+            <a
+              href="tel:0187000181"
+              className="hidden items-center gap-2 text-sm font-semibold text-ivory/80 transition-colors hover:text-ivory md:flex"
             >
-              <Instagram className="w-5 h-5 transition-all duration-300 group-hover:rotate-12" />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/20 to-amber-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+              <Phone className="h-4 w-4 text-brand" aria-hidden />
+              01 87 00 01 81
+            </a>
+            <div className="hidden sm:block">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary min-h-11!"
+              >
+                Réserver un créneau
+              </a>
+            </div>
 
-            {/* Mobile menu button */}
+            {/* Bouton menu mobile */}
             <button
-              className="lg:hidden flex items-center"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-ivory lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-expanded={isMenuOpen}
-              aria-label="Ouvrir le menu"
+              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
-              <motion.span
-                initial={false}
-                animate={{ rotate: isMenuOpen ? 90 : 0, scale: isMenuOpen ? 1.1 : 1 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="inline-block"
-              >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6 text-white" />
-                ) : (
-                  <Menu className="h-6 w-6 text-white" />
-                )}
-              </motion.span>
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              className="lg:hidden border-t border-gray-700 overflow-hidden"
-            >
-              <nav className="flex flex-col space-y-4 py-4">
-                {[...leftNavigation, ...rightNavigation].map((item, idx) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ x: -10, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.03 * idx }}
-                  >
-                    <Link
-                      href={item.href}
-                      className="text-white hover:text-amber-400 transition-colors duration-200 font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  </motion.div>
-                ))}
-                <div className="pt-4 border-t border-gray-700">
-                  <Link
-                    href="https://www.instagram.com/the_experts_barbershop/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-white hover:text-amber-400 transition-colors duration-200"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    <span className="text-sm font-medium">Instagram</span>
-                  </Link>
-                </div>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
+
+      {/* Menu mobile : panneau sous le header, pas de plein écran */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="overflow-hidden border-t border-line-dark bg-coal/95 backdrop-blur-md lg:hidden"
+          >
+            <nav className="shell flex flex-col py-4" aria-label="Navigation mobile">
+              {navigation.map((item, idx) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ x: -8, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.03 * idx, duration: 0.2 }}
+                >
+                  <Link
+                    href={item.href}
+                    className="font-display block border-b border-line-dark py-3.5 text-lg uppercase tracking-wide text-ivory transition-colors hover:text-brand"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <div className="flex items-center gap-3 pt-5 pb-2">
+                <a
+                  href={BOOKING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary flex-1"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Réserver un créneau
+                </a>
+                <a href="tel:0187000181" className="btn-ghost-dark px-4!" aria-label="Appeler le salon">
+                  <Phone className="h-5 w-5" aria-hidden />
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

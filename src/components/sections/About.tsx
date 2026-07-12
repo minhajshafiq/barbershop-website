@@ -1,106 +1,114 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Users, Clock, Star } from "lucide-react";
-import ImageSlider from "@/components/ui/ImageSlider";
+
+const stats = [
+  { value: "14+", label: "ans d’expérience" },
+  { value: "5000+", label: "clients accueillis" },
+  { value: "30 min", label: "en moyenne par coupe" },
+  { value: "4,9/5", label: "sur Google" },
+];
 
 const About = () => {
-  const stats = [
-    { icon: <Award className="w-6 h-6" />, value: "14+", label: "Années d'expérience" },
-    { icon: <Users className="w-6 h-6" />, value: "5000+", label: "Clients satisfaits" },
-    { icon: <Clock className="w-6 h-6" />, value: "30min", label: "Temps moyen" },
-    { icon: <Star className="w-6 h-6" />, value: "4.9/5", label: "Note moyenne" }
-  ];
-
-  const salonImages = [
-    "/salon1.webp",
-    "/salon2.webp", 
-    "/salon3.webp",
-    "/salon4.webp"
-  ];
-
   return (
-    <section id="about" className="scroll-mt-20 section-padding relative overflow-hidden" style={{ backgroundColor: '#151515' }} role="main" aria-labelledby="about-heading">
-      {/* Background decoration */}
-      <div className="background-decoration">
-        <div className="background-decoration-shape top-1/4 right-20 w-48 h-48 bg-amber-400"></div>
-        <div className="background-decoration-shape bottom-1/4 left-20 w-32 h-32 bg-amber-600"></div>
-      </div>
-      <div className="section-container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
+    <section
+      id="about"
+      className="scroll-mt-20 overflow-hidden bg-night py-20 sm:py-28"
+      aria-labelledby="about-heading"
+    >
+      <div className="shell-wide">
+        <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
+          {/* Collage photo : deux images qui se chevauchent */}
+          <div className="relative lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, clipPath: "inset(100% 0 0 0)" }}
+              whileInView={{ opacity: 1, clipPath: "inset(0% 0 0 0)" }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
+              className="relative aspect-[3/4] w-[85%] overflow-hidden"
+            >
+              <Image
+                src="/salon4.webp"
+                alt="Le canapé chesterfield, le violon et les fauteuils de barbier du salon"
+                fill
+                sizes="(min-width: 1024px) 35vw, 85vw"
+                className="object-cover"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="absolute -bottom-10 right-0 aspect-[4/3] w-[55%] overflow-hidden border-8 border-night sm:-right-4"
+            >
+              <Image
+                src="/salon3.webp"
+                alt="La moto vintage et la guitare accrochée au mur vert du salon"
+                fill
+                sizes="(min-width: 1024px) 20vw, 55vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
+
+          {/* Contenu éditorial */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+            className="mt-6 lg:col-span-7 lg:mt-0 lg:pl-8"
           >
-            <div className="section-badge">
-              <span className="section-badge-text">À propos</span>
-            </div>
-            <h2 id="about-heading" className="text-4xl md:text-5xl font-bold text-white mb-6">
-              À propos de <span className="text-amber-600">nous</span>
+            <p className="eyebrow mb-4">Depuis 2010</p>
+            <h2
+              id="about-heading"
+              className="font-display max-w-2xl text-4xl leading-[1.08] font-bold uppercase sm:text-[2.6rem]"
+            >
+              Un salon de quartier construit autour de la confiance.
             </h2>
-            <p className="text-lg text-gray-300 mb-6">
-              Depuis 2010, The Experts Barber Shop perpétue l&apos;art traditionnel 
-              de la coiffure masculine tout en s&apos;adaptant aux tendances modernes. 
-              Notre équipe de barbiers expérimentés vous garantit une expérience 
-              unique dans un cadre chaleureux et professionnel.
+
+            <p className="mt-6 max-w-xl leading-relaxed text-smoke">
+              Depuis plus de 14 ans, The Experts Barber Shop accueille ses clients au
+              101 avenue Jean-Lolive, à Pantin. Six fauteuils, une déco inspirée des
+              motos vintage, une ambiance musicale qui donne le ton — et des barbiers
+              qui prennent le temps de comprendre ce que vous voulez avant de sortir
+              la tondeuse.
             </p>
-            
-            <div className="bg-white/5 border-l-4 border-amber-400 p-6 mb-8 rounded-r-lg shadow-sm">
-              <p className="text-lg text-gray-200 font-medium italic leading-relaxed">
-                The Expert vous invite dans un espace unique de 6 places confortables, 
-                avec une déco urbaine chic inspirée des motos vintage 🏍️ et une ambiance 
-                musicale qui donne le ton à chaque coupe 🎶
+            <p className="mt-4 max-w-xl leading-relaxed text-smoke">
+              Ici, chaque coupe est adaptée au style, au visage et aux habitudes de
+              la personne installée dans le fauteuil.
+            </p>
+
+            <blockquote className="mt-10 border-l-2 border-brand pl-6">
+              <p className="font-display text-2xl leading-snug font-normal text-ivory sm:text-3xl">
+                « Chaque client doit pouvoir se sentir à l’aise avant même de
+                s’asseoir dans le fauteuil. »
               </p>
-            </div>
-            
-            <p className="text-lg text-gray-300 mb-8">
-              Nous croyons que chaque homme mérite de se sentir confiant et élégant. 
-              C&apos;est pourquoi nous nous engageons à fournir des services de qualité 
-              supérieure avec une attention particulière aux détails.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
+              <footer className="mt-3 text-sm text-smoke">L’équipe du salon</footer>
+            </blockquote>
+
+            {/* Chiffres éditoriaux, sans cartes */}
+            <dl className="mt-12 grid grid-cols-2 gap-y-8 sm:grid-cols-4">
+              {stats.map((stat, idx) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="text-center p-6 rounded-lg bg-white/5 border border-white/10"
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="border-l border-line-dark pl-4 sm:pl-5"
                 >
-                  <div className="flex justify-center mb-2 text-amber-600">
-                    {stat.icon}
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">
+                  <dd className="font-display text-3xl font-medium text-brand sm:text-4xl">
                     {stat.value}
-                  </div>
-                  <div className="text-sm text-gray-300">
+                  </dd>
+                  <dt className="mt-1 text-xs tracking-wide text-smoke uppercase">
                     {stat.label}
-                  </div>
+                  </dt>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="relative"
-          >
-            <ImageSlider 
-              images={salonImages}
-              alt="The Experts Barber Shop - Photos de l'intérieur du salon de coiffure masculine à Pantin"
-              className="w-full"
-            />
-            
-            {/* Decorative floating circles removed for a cleaner look */}
+            </dl>
           </motion.div>
         </div>
       </div>

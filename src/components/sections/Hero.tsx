@@ -1,130 +1,133 @@
 "use client";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
+
+const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+
+const proofs = [
+  { value: "4,9/5", label: "sur Google" },
+  { value: "5000+", label: "clients accueillis" },
+  { value: "7j/7", label: "de 9h30 à 20h" },
+  { value: "2010", label: "année d’ouverture" },
+];
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+};
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" role="banner">
-      {/* Background Image */}
-      <div className="absolute inset-0">
+    <>
+      <section className="relative flex min-h-[92svh] items-end overflow-hidden">
+        {/* Photo unique et forte : l’équipe dans le salon */}
         <Image
           src="/hero.jpg"
-          alt="The Experts Barber Shop - Salon de coiffure masculine professionnel à Pantin"
+          alt="L’équipe de The Experts Barber Shop réunie sur le canapé chesterfield du salon, à Pantin"
           fill
-          className="object-cover"
           priority
+          sizes="100vw"
+          className="object-cover object-[62%_30%]"
         />
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60"></div>
-        {/* Animated overlay pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div 
-            className="absolute inset-0 animate-pulse"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          ></div>
+        {/* Overlay sombre progressif : plus dense en bas et à gauche, visages préservés */}
+        <div className="absolute inset-0 bg-gradient-to-t from-coal via-coal/35 to-coal/15" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-r from-coal/70 via-transparent to-transparent" aria-hidden />
+        <div className="grain absolute inset-0" aria-hidden />
+
+        {/* Contenu bas-gauche */}
+        <div className="shell-wide relative z-10 pt-36 pb-16 sm:pb-20">
+          <div className="max-w-4xl">
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="eyebrow mb-5"
+            >
+              The Experts Barber Shop · Pantin
+            </motion.p>
+
+            <motion.h1
+              {...fadeUp}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase"
+            >
+              Une coupe précise.
+              <br />
+              Une équipe qui{" "}
+              <span className="text-brand whitespace-nowrap">vous connaît.</span>
+            </motion.h1>
+
+            <motion.p
+              {...fadeUp}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg"
+            >
+              Barber shop de quartier depuis 2010. Coupe, barbe et soins dans une
+              ambiance conviviale, avec une attention particulière portée à chaque
+              détail.
+            </motion.p>
+
+            <motion.div
+              {...fadeUp}
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="mt-8 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                Réserver un créneau
+                <span aria-hidden>→</span>
+              </a>
+              <a href="#tarifs" className="btn-ghost-dark">
+                Voir les tarifs
+              </a>
+            </motion.div>
+          </div>
         </div>
-      </div>
-      
-      <div className="container mx-auto px-4 text-center relative z-10">
+
+        {/* Indicateur de scroll discret */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="absolute right-8 bottom-8 z-10 hidden flex-col items-center gap-3 lg:flex"
+          aria-hidden
         >
-          {/* Welcome text */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-gray-400 text-sm md:text-base mb-4 font-medium tracking-wide uppercase"
-          >
-            Bienvenue chez The Experts Barber Shop
-          </motion.p>
-          
-          {/* Main headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
-          >
-            Entre <span className="text-amber-600">style</span> et <span className="text-amber-600">précision</span>,<br />
-            laisse nos experts révéler<br />
-            ton <span className="text-amber-600">meilleur look</span>
-          </motion.h1>
-          
-          {/* Sub headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-xl text-gray-200 mb-8 font-light"
-          >
-            Réserve ton rendez-vous maintenant !
-          </motion.p>
-          
-          {/* Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
-          >
-            <Button 
-              size="lg" 
-              className="button-primary text-lg px-8 py-4 w-64 sm:w-auto mx-auto sm:mx-0"
-              onClick={() => window.open('https://www.planity.com/the-expert-93500-pantin-3v3', '_blank')}
-            >
-              Réserve maintenant
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="button-secondary text-lg px-8 py-4 w-64 sm:w-auto mx-auto sm:mx-0"
-              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Nos services
-            </Button>
-          </motion.div>
-          
-          {/* Rating */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex items-center justify-center space-x-2 text-white"
-          >
-            <div className="flex space-x-1">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-amber-600">★</span>
-              ))}
-            </div>
-            <span className="text-sm md:text-base">4.9/5 sur Google</span>
-          </motion.div>
-        </motion.div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-3 bg-white rounded-full mt-2"
+          <span className="text-[10px] font-bold tracking-[0.3em] text-ivory/60 uppercase [writing-mode:vertical-rl]">
+            Défiler
+          </span>
+          <motion.span
+            animate={{ scaleY: [0.3, 1, 0.3] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="h-12 w-px origin-top bg-brand"
           />
+        </motion.div>
+      </section>
+
+      {/* Bandeau de preuves sociales */}
+      <div className="border-y border-line-dark bg-coal">
+        <div className="shell-wide grid grid-cols-2 lg:grid-cols-4">
+          {proofs.map((proof, idx) => (
+            <div
+              key={proof.value}
+              className={`flex items-baseline gap-2 border-line-dark px-2 py-5 sm:px-6 ${
+                idx > 0 ? "lg:border-l" : ""
+              } ${idx % 2 === 1 ? "border-l lg:border-l" : ""}`}
+            >
+              <span className="font-display text-2xl font-medium text-brand">
+                {proof.value}
+              </span>
+              <span className="text-xs tracking-wide text-smoke uppercase">
+                {proof.label}
+              </span>
+            </div>
+          ))}
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </>
   );
 };
 
