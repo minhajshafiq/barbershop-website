@@ -15,7 +15,7 @@ import { navigation } from "@/lib/site";
 export default function Home() {
   const photos = getGalleryPhotos();
   // Sans photo, ni section galerie ni lien « Galerie » dans les menus
-  const nav = photos.length > 0 ? navigation : navigation.filter((item) => item.href !== "#galerie");
+  const nav = photos.length > 0 ? navigation : navigation.filter((item) => item.href !== "/#galerie");
 
   return (
     <div className="min-h-screen">

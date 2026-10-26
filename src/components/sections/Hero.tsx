@@ -4,7 +4,7 @@ import { BOOKING_URL } from "@/lib/site";
 const proofs = [
   { value: "4,9/5", label: "sur Google" },
   { value: "5000+", label: "clients accueillis" },
-  { value: "7j/7", label: "de 9h30 à 20h" },
+  { value: "7j/7", label: "ouvert tous les jours" },
   { value: "2010", label: "année d’ouverture" },
 ];
 

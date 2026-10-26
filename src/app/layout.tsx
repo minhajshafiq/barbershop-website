@@ -92,7 +92,7 @@ export default function RootLayout({
       "latitude": "48.8964",
       "longitude": "2.4093"
     },
-    "openingHours": "Mo-Su 09:30-20:00",
+    "openingHours": ["Mo 10:00-20:30", "Tu-Th 09:30-20:30", "Fr-Sa 09:00-21:00", "Su 10:00-20:00"],
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",

@@ -1,6 +1,6 @@
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import MapEmbed from "@/components/ui/MapEmbed";
-import { BOOKING_URL, PHONE_INTL, PHONE } from "@/lib/site";
+import { BOOKING_URL, OPENING_HOURS, PHONE_INTL, PHONE } from "@/lib/site";
 
 const DIRECTIONS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=101+Av.+Jean+Lolive,+93500+Pantin";
@@ -9,7 +9,7 @@ const details = [
   {
     icon: Clock,
     title: "Horaires",
-    lines: ["Ouvert tous les jours", "9h30 – 20h00"],
+    lines: OPENING_HOURS.map(({ days, hours }) => `${days} · ${hours}`),
   },
   {
     icon: Phone,

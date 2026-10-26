@@ -11,7 +11,7 @@ const teamMembers: {
   { name: "Wael", specialty: "Coupes & dégradés précis" },
   { name: "Souhaib", specialty: "Rasage traditionnel & styling" },
   { name: "Hamza", specialty: "Coupes modernes & finitions" },
-  { name: "Med Amine", specialty: "Conseil & transformations" },
+  { name: "Simo", specialty: "Conseil & transformations" },
 ];
 
 const Team = () => {
