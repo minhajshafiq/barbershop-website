@@ -83,10 +83,10 @@ const Services = () => {
                         <div className="flex items-baseline gap-2">
                           <span className="text-sm font-semibold sm:text-[15px]">{item.name}</span>
                           <span
-                            className="mx-1 flex-1 border-b border-dotted border-ink/35"
+                            className="mx-1 flex-1 border-b border-dotted border-ink/50"
                             aria-hidden
                           />
-                          <span className="font-display shrink-0 text-lg font-medium whitespace-nowrap text-canard tabular-nums">
+                          <span className="font-display shrink-0 text-xl font-bold whitespace-nowrap text-canard-deep tabular-nums">
                             {item.price}
                           </span>
                         </div>
