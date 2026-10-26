@@ -37,6 +37,17 @@ pnpm lint
 
 Les tarifs et le téléphone apparaissent aussi dans les données structurées de `src/app/layout.tsx` : les mettre à jour aux deux endroits.
 
+## Galerie des coupes
+
+Déposer les photos dans `public/galerie/`, puis redéployer : elles apparaissent dans la section « Dans le fauteuil ».
+
+- Nommer les fichiers `AAAA-MM-JJ-description.jpg` (ex. `2026-10-26-degrade-barbe.jpg`) : les plus récentes s'affichent en premier.
+- Formats acceptés : jpg, png, webp, avif. Les photos HEIC d'iPhone doivent être converties en JPG. Le build liste les fichiers ignorés.
+- Pas besoin de redimensionner : Next.js optimise les images.
+- 8 photos visibles, le reste derrière « Voir les N autres photos ».
+- Dossier vide ou absent : la section et le lien « Galerie » sont masqués.
+- Droit à l'image : n'utiliser que des photos de personnes qui ont donné leur accord.
+
 ## Design
 
 - Fond sombre `#11100f`, sections crème `#f2eee7`, orange `#d96827`

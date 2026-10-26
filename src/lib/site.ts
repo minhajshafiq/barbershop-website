@@ -11,5 +11,6 @@ export const navigation: NavItem[] = [
   { name: "La carte", href: "#carte" },
   { name: "Le salon", href: "#salon" },
   { name: "L’équipe", href: "#equipe" },
+  { name: "Galerie", href: "#galerie" },
   { name: "Contact", href: "#contact" },
 ];

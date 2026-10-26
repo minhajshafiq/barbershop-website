@@ -5,9 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BOOKING_URL, navigation, PHONE_INTL, PHONE } from "@/lib/site";
+import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 
-const Header = () => {
+const Header = ({ navigation }: { navigation: NavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 

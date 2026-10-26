@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { BOOKING_URL, navigation, PHONE_INTL, PHONE } from "@/lib/site";
+import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 
 // lucide-react 1.x a retiré les logos de marque : tracé Instagram de Lucide (licence ISC) en inline
 const InstagramIcon = () => (
@@ -11,7 +11,7 @@ const InstagramIcon = () => (
   </svg>
 );
 
-const Footer = () => {
+const Footer = ({ navigation }: { navigation: NavItem[] }) => {
   const currentYear = new Date().getFullYear();
 
   return (
