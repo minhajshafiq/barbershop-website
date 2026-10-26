@@ -16,18 +16,32 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
 
   return (
     <footer className="bg-coal pb-24 lg:pb-0">
+      {/* Le sol du salon */}
+      <div className="tiles" aria-hidden />
+
       <div className="shell-wide pt-16 sm:pt-20">
-        {/* Phrase de marque */}
-        <div className="flex flex-wrap items-end justify-between gap-8 border-b border-line-dark pb-12">
-          <p className="font-display max-w-2xl text-3xl leading-tight font-bold uppercase sm:text-4xl lg:text-5xl">
+        {/* Logo puis numéro dans un ruban chrome, comme en bas du logo */}
+        <div className="flex flex-col items-center border-b border-line-dark pb-14 text-center">
+          <Image
+            src="/LOGO.jpg"
+            alt="The Experts Barber Shop"
+            width={72}
+            height={72}
+            className="rounded-full object-contain"
+          />
+          <a href={`tel:${PHONE_INTL}`} className="ribbon ribbon-chrome mt-6" aria-label={`Appeler le salon au ${PHONE}`}>
+            {PHONE}
+          </a>
+
+          <p className="font-display mt-10 max-w-2xl text-3xl leading-tight font-bold uppercase sm:text-4xl">
             Une bonne coupe ne change pas qui vous êtes.{" "}
-            <span className="text-brand">Elle le révèle.</span>
+            <span className="text-canard-light">Elle le révèle.</span>
           </p>
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary"
+            className="btn-primary mt-8"
           >
             Réserver un créneau
             <span aria-hidden>→</span>
@@ -35,20 +49,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
         </div>
 
         {/* Colonnes */}
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Image
-              src="/LOGO.jpg"
-              alt="The Experts Barber Shop"
-              width={72}
-              height={72}
-              className="rounded-full object-contain"
-            />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-smoke">
-              Barber shop de quartier à Pantin, depuis 2010.
-            </p>
-          </div>
-
+        <div className="grid gap-10 py-12 sm:grid-cols-3">
           <nav aria-label="Navigation pied de page">
             <h3 className="mb-4 text-xs font-bold tracking-[0.2em] text-smoke uppercase">
               Menu
@@ -58,7 +59,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-ivory/85 transition-colors hover:text-brand"
+                    className="text-sm text-ivory/85 transition-colors hover:text-canard-light"
                   >
                     {item.name}
                   </Link>
@@ -78,11 +79,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
                 93500 Pantin
               </p>
               <p>Tous les jours · 9h30 – 20h</p>
-              <p>
-                <a href={`tel:${PHONE_INTL}`} className="transition-colors hover:text-brand">
-                  {PHONE}
-                </a>
-              </p>
+              <p>Barber shop de quartier, depuis 2010.</p>
             </address>
           </div>
 
@@ -94,7 +91,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
               href="https://www.instagram.com/the_experts_barbershop/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-ivory/85 transition-colors hover:text-brand"
+              className="inline-flex items-center gap-2 text-sm text-ivory/85 transition-colors hover:text-canard-light"
             >
               <InstagramIcon />
               @the_experts_barbershop
