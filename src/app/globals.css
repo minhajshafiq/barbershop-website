@@ -176,8 +176,7 @@ body {
   .btn-primary,
   .btn-cream,
   .btn-ghost-dark,
-  .btn-ghost-light,
-  .btn-ink {
+  .btn-ghost-light {
     @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm px-6 text-sm font-bold tracking-wide transition-colors duration-200;
   }
 
@@ -185,8 +184,7 @@ body {
   .btn-primary:focus-visible,
   .btn-cream:focus-visible,
   .btn-ghost-dark:focus-visible,
-  .btn-ghost-light:focus-visible,
-  .btn-ink:focus-visible {
+  .btn-ghost-light:focus-visible {
     outline: 2px solid transparent;
     box-shadow:
       0 0 0 2px var(--background-darker),
@@ -209,11 +207,6 @@ body {
 
   .btn-ghost-light {
     @apply border border-ink/30 text-ink hover:border-ink/60 hover:bg-ink/5;
-  }
-
-  /* Utilisé uniquement par Pricing.tsx, supprimé à la tâche 4 */
-  .btn-ink {
-    @apply bg-ink text-ivory hover:bg-coal;
   }
 
   /* Ruban à pointes en V, repris du logo (« Les Experts », numéro de téléphone) */

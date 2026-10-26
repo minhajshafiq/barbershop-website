@@ -1,158 +1,126 @@
-"use client";
+import { BOOKING_URL } from "@/lib/site";
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-
-const services = [
+// Une seule source pour les prestations : description de la catégorie, puis les prix.
+// Les prix sont aussi dans les données structurées de src/app/layout.tsx.
+const menu = [
   {
-    number: "01",
-    title: "Coupe",
+    category: "Coupe",
     description:
       "Coupe classique, dégradé, coiffage ou rasage du crâne à l’ancienne. Shampoing compris.",
-    price: "dès 13 €",
-    image: "/salon1.webp",
-    imageAlt: "Les fauteuils de barbier vintage du salon",
+    items: [
+      { name: "Shampoing + coupe + coiffage", duration: "30 min", price: "15 €" },
+      { name: "Rasage du crâne traditionnel", duration: "30 min", price: "13 €" },
+      { name: "Coupe + taille de barbe", duration: "45 min", price: "22 €" },
+    ],
   },
   {
-    number: "02",
-    title: "Barbe",
+    category: "Barbe",
     description:
       "Taille, contours et rasage traditionnel au coupe-chou, fini à la serviette chaude.",
-    price: "dès 10 €",
-    image: "/salon2.webp",
-    imageAlt: "Le poste de travail et les miroirs du salon",
+    items: [
+      { name: "Taille de barbe + rasage", duration: "20 min", price: "10 €" },
+      { name: "Rasage traditionnel", duration: "20 min", price: "10 €" },
+    ],
   },
   {
-    number: "03",
-    title: "Soins",
+    category: "Soins",
     description:
       "Gommage capillaire, black mask ou masque à l’argile. Le cuir chevelu respire, le visage aussi.",
-    price: "dès 22 €",
-    image: "/salon4.webp",
-    imageAlt: "Le canapé chesterfield et l’espace d’attente du salon",
+    items: [
+      { name: "Gommage capillaire + black mask", duration: "45 min", price: "22 €" },
+      { name: "Gommage capillaire + masque à l’argile", duration: "30 min", price: "22 €" },
+    ],
   },
   {
-    number: "04",
-    title: "Transformation",
+    category: "Techniques",
     description:
       "Lissage brésilien, coloration, nouveau style ou changement complet. On en parle, puis on le fait.",
-    price: "dès 22 €",
-    image: "/salon3.webp",
-    imageAlt: "La moto vintage et la guitare qui décorent le salon",
+    items: [
+      { name: "Lissage brésilien + coupe + coiffage", duration: "1 h 30", price: "22 €" },
+      { name: "Coloration + coupe + coiffage", duration: "1 h 30", price: "22 €" },
+    ],
   },
 ];
 
 const Services = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   return (
     <section
-      id="services"
-      className="scroll-mt-20 bg-night py-20 sm:py-28"
-      aria-labelledby="services-heading"
+      id="carte"
+      className="scroll-mt-20 bg-cream py-20 text-ink sm:py-28"
+      aria-labelledby="carte-heading"
     >
       <div className="shell-wide">
-        {/* Titre aligné à gauche */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
-        >
-          <p className="eyebrow mb-4">Ce qu’on fait</p>
-          <h2
-            id="services-heading"
-            className="font-display text-4xl leading-[1.05] font-bold uppercase sm:text-5xl lg:text-6xl"
-          >
-            Quatre gestes,
-            <br />
-            un seul niveau d’exigence.
-          </h2>
-        </motion.div>
-
-        <div className="grid gap-12 lg:grid-cols-12">
-          {/* Liste éditoriale */}
-          <ul className="lg:col-span-7">
-            {services.map((service, index) => (
-              <motion.li
-                key={service.number}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                onMouseEnter={() => setActiveIndex(index)}
-                className="group border-t border-line-dark last:border-b"
-              >
-                <div className="flex items-baseline gap-5 py-7 sm:gap-8 sm:py-9">
-                  <span className="font-display w-14 shrink-0 text-3xl font-medium text-brand sm:text-4xl">
-                    {service.number}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                      <h3 className="font-display text-2xl font-medium tracking-wide uppercase transition-transform duration-300 sm:text-3xl lg:group-hover:translate-x-2">
-                        {service.title}
-                      </h3>
-                      <span className="text-sm font-semibold text-smoke tabular-nums">
-                        {service.price}
-                      </span>
-                    </div>
-                    <p className="mt-2 max-w-md text-sm leading-relaxed text-smoke sm:text-base">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-
-          {/* Image contextuelle — change au survol sur desktop */}
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-              whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-              className="relative aspect-[4/5] overflow-hidden lg:sticky lg:top-28"
+        <div className="reveal mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="eyebrow mb-4 text-canard">Prestations &amp; tarifs</p>
+            <h2
+              id="carte-heading"
+              className="font-display text-4xl leading-[1.05] font-bold uppercase sm:text-5xl lg:text-6xl"
             >
-              {services.map((service, index) => (
-                <Image
-                  key={service.number}
-                  src={service.image}
-                  alt={index === activeIndex ? service.imageAlt : ""}
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className={`object-cover transition-opacity duration-500 ${
-                    index === activeIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))}
-              <div className="absolute inset-0 bg-gradient-to-t from-night/50 to-transparent" aria-hidden />
-              <span className="font-display absolute bottom-4 left-5 text-sm tracking-[0.2em] text-ivory/80 uppercase">
-                {services[activeIndex].title}
-              </span>
-            </motion.div>
+              La carte
+            </h2>
           </div>
+          <p className="text-sm text-stone">Paiement par carte ou en espèces.</p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-10"
-        >
-          <a
-            href="#tarifs"
-            className="group inline-flex items-center gap-2 text-sm font-bold text-brand transition-colors hover:text-brand-hover"
-          >
-            Découvrir toutes les prestations
-            <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-        </motion.div>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* Carte imprimée dans un cadre ornemental, comme le logo */}
+          <div className="ornate-frame p-7 sm:p-11 lg:col-span-8">
+            <p className="font-display text-center text-sm font-medium tracking-[0.3em] text-ink/70 uppercase">
+              Les Experts · Pantin
+            </p>
+            <div className="mt-9 grid gap-10 sm:grid-cols-2 sm:gap-x-12">
+              {menu.map((section) => (
+                <div key={section.category} className="reveal">
+                  <h3 className="font-display flex items-center gap-3 text-xl font-medium tracking-[0.15em] uppercase">
+                    <span className="h-px w-6 shrink-0 bg-canard" aria-hidden />
+                    {section.category}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-stone">{section.description}</p>
+                  <ul className="mt-5 space-y-4">
+                    {section.items.map((item) => (
+                      <li key={item.name}>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-sm font-semibold sm:text-[15px]">{item.name}</span>
+                          <span
+                            className="mx-1 flex-1 border-b border-dotted border-ink/35"
+                            aria-hidden
+                          />
+                          <span className="font-display shrink-0 text-lg font-medium whitespace-nowrap text-canard tabular-nums">
+                            {item.price}
+                          </span>
+                        </div>
+                        <span className="text-xs text-stone">{item.duration}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Encart bleu canard */}
+          <div className="flex items-center lg:col-span-4">
+            <div className="reveal w-full bg-canard p-8 text-ivory sm:p-10">
+              <h3 className="font-display text-3xl leading-tight font-bold uppercase">
+                Vous hésitez sur la prestation ?
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-ivory/85 sm:text-base">
+                Réservez une coupe classique et précisez votre besoin une fois sur
+                place. L’équipe s’adapte.
+              </p>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-cream mt-7 w-full"
+              >
+                Choisir un créneau
+                <span aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

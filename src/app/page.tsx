@@ -1,7 +1,6 @@
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero";
 import Services from "@/components/sections/Services";
-import Pricing from "@/components/sections/Pricing";
 import About from "@/components/sections/About";
 import Gallery from "@/components/sections/Gallery";
 import Team from "@/components/sections/Team";
@@ -18,7 +17,6 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
-        <Pricing />
         <About />
         <Gallery />
         <Team />
