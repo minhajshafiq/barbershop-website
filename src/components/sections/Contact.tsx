@@ -1,7 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import MapEmbed from "@/components/ui/MapEmbed";
 import { BOOKING_URL, PHONE_INTL, PHONE } from "@/lib/site";
 
 const DIRECTIONS_URL =
@@ -35,14 +33,8 @@ const Contact = () => {
       <div className="shell-wide">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Infos et conversion — 40 % */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-5"
-          >
-            <p className="eyebrow mb-4">Contact</p>
+          <div className="reveal lg:col-span-5">
+            <p className="eyebrow mb-4 text-canard-light">Contact</p>
             <h2
               id="contact-heading"
               className="font-display text-4xl leading-[1.08] font-bold uppercase sm:text-5xl"
@@ -76,7 +68,7 @@ const Contact = () => {
             <dl className="mt-12 space-y-6 border-t border-line-dark pt-8">
               {details.map((detail) => (
                 <div key={detail.title} className="flex gap-4">
-                  <detail.icon className="mt-1 h-5 w-5 shrink-0 text-brand" aria-hidden />
+                  <detail.icon className="mt-1 h-5 w-5 shrink-0 text-canard-light" aria-hidden />
                   <div>
                     <dt className="text-sm font-bold tracking-wide text-ivory uppercase">
                       {detail.title}
@@ -116,26 +108,12 @@ const Contact = () => {
                 Réserver
               </a>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Carte — 60 % */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="overflow-hidden rounded-sm border border-line-dark lg:col-span-7"
-          >
-            <iframe
-              src="https://maps.google.com/maps?q=101+Av.+Jean+Lolive,+93500+Pantin&z=16&output=embed"
-              className="h-[420px] w-full grayscale-[35%] lg:h-full lg:min-h-[520px]"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Plan d’accès — The Experts Barber Shop, 101 avenue Jean-Lolive, 93500 Pantin"
-            />
-          </motion.div>
+          {/* Carte — 60 %, chargée au clic */}
+          <div className="reveal overflow-hidden rounded-sm border border-line-dark lg:col-span-7">
+            <MapEmbed />
+          </div>
         </div>
       </div>
     </section>
