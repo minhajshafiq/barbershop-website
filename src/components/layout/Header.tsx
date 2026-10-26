@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 
 const Header = ({ navigation }: { navigation: NavItem[] }) => {
@@ -18,17 +17,27 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Échap ferme le menu mobile
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
+
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-500 ${
+      className={`fixed top-0 z-50 w-full transition-colors duration-500 ${
         isScrolled || isMenuOpen
-          ? "border-b border-line-dark bg-coal/85 backdrop-blur-md"
+          ? "border-b border-line-dark bg-coal/90 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <div className="shell-wide">
         <div className="flex h-20 items-center justify-between gap-4">
-          {/* Logo */}
+          {/* Logo : affiché petit, la source fait 150 px */}
           <Link href="/" className="flex shrink-0 items-center gap-3" aria-label="The Experts Barber Shop — Accueil">
             <Image
               src="/LOGO.jpg"
@@ -38,7 +47,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
               className="rounded-full object-contain"
               priority
             />
-            <span className="font-display hidden text-lg font-medium uppercase tracking-widest sm:block lg:hidden xl:block">
+            <span className="font-display hidden text-lg font-medium tracking-widest uppercase sm:block lg:hidden xl:block">
               The Experts
             </span>
           </Link>
@@ -52,7 +61,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
                 className="group relative text-sm font-semibold text-ivory/90 transition-colors duration-200 hover:text-ivory"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-canard-light transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </nav>
@@ -63,25 +72,24 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
               href={`tel:${PHONE_INTL}`}
               className="hidden items-center gap-2 text-sm font-semibold text-ivory/80 transition-colors hover:text-ivory md:flex"
             >
-              <Phone className="h-4 w-4 text-brand" aria-hidden />
+              <Phone className="h-4 w-4 text-canard-light" aria-hidden />
               {PHONE}
             </a>
-            <div className="hidden sm:block">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary min-h-11!"
-              >
-                Réserver un créneau
-              </a>
-            </div>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary hidden min-h-11 sm:inline-flex"
+            >
+              Réserver un créneau
+            </a>
 
             {/* Bouton menu mobile */}
             <button
               className="-mr-2 flex h-11 w-11 items-center justify-center text-ivory lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-expanded={isMenuOpen}
+              aria-controls="menu-mobile"
               aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -90,51 +98,44 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
         </div>
       </div>
 
-      {/* Menu mobile : panneau sous le header, pas de plein écran */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="overflow-hidden border-t border-line-dark bg-coal/95 backdrop-blur-md lg:hidden"
-          >
-            <nav className="shell flex flex-col py-4" aria-label="Navigation mobile">
-              {navigation.map((item, idx) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ x: -8, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.03 * idx, duration: 0.2 }}
-                >
-                  <Link
-                    href={item.href}
-                    className="font-display block border-b border-line-dark py-3.5 text-lg uppercase tracking-wide text-ivory transition-colors hover:text-brand"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <div className="flex items-center gap-3 pt-5 pb-2">
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary flex-1"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Réserver un créneau
-                </a>
-                <a href={`tel:${PHONE_INTL}`} className="btn-ghost-dark px-4!" aria-label="Appeler le salon">
-                  <Phone className="h-5 w-5" aria-hidden />
-                </a>
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Menu mobile : se déplie en CSS (grille 0fr → 1fr).
+          inert quand il est fermé : ses liens sortent du parcours clavier. */}
+      <div
+        id="menu-mobile"
+        inert={!isMenuOpen}
+        className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none lg:hidden ${
+          isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <nav className="shell flex flex-col border-t border-line-dark py-4" aria-label="Navigation mobile">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="font-display block border-b border-line-dark py-3.5 text-lg tracking-wide text-ivory uppercase transition-colors hover:text-canard-light"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="flex items-center gap-3 pt-5 pb-2">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary flex-1"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Réserver un créneau
+              </a>
+              <a href={`tel:${PHONE_INTL}`} className="btn-ghost-dark px-4" aria-label="Appeler le salon">
+                <Phone className="h-5 w-5" aria-hidden />
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
   );
 };
