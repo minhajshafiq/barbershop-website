@@ -1,30 +1,40 @@
 @import "tailwindcss";
 
+/* Tailwind scanne tout le dépôt : on exclut les docs, dont les exemples de classes gonfleraient le CSS */
+@source not "../../docs";
+
 :root {
   --background-dark: #11100f;
   --background-darker: #090909;
-  --background-light: #f2eee7;
-  --primary-orange: #d96827;
-  --primary-orange-hover: #ed7a35;
-  /* Orange assombri pour le texte sur fond crème (contraste 4,96:1, WCAG AA) */
-  --primary-orange-deep: #a84a1a;
-  --wood-brown: #5b3829;
+  --background-light: #f3ede1;
+  /* Bleu canard : le mur de la grande salle */
+  --canard: #176579;
+  --canard-deep: #0d3f4c;
+  --canard-light: #7fc4d4;
+  /* Chrome : les fauteuils de barbier */
+  --chrome: #c9cdd1;
+  --chrome-shade: #8e9398;
   --text-light: #f7f4ef;
   --text-dark: #171513;
   --text-muted: #a9a39b;
   --text-muted-on-light: #6e675e;
   --border-dark: rgba(255, 255, 255, 0.12);
   --border-light: rgba(17, 16, 15, 0.12);
+  /* Anciennes couleurs : supprimées à la tâche 12, quand plus aucun composant ne les utilise */
+  --primary-orange: #d96827;
+  --primary-orange-hover: #ed7a35;
+  --primary-orange-deep: #a84a1a;
+  --wood-brown: #5b3829;
 }
 
 @theme inline {
   --color-night: var(--background-dark);
   --color-coal: var(--background-darker);
   --color-cream: var(--background-light);
-  --color-brand: var(--primary-orange);
-  --color-brand-hover: var(--primary-orange-hover);
-  --color-brand-deep: var(--primary-orange-deep);
-  --color-wood: var(--wood-brown);
+  --color-canard: var(--canard);
+  --color-canard-deep: var(--canard-deep);
+  --color-canard-light: var(--canard-light);
+  --color-chrome: var(--chrome);
   --color-ivory: var(--text-light);
   --color-ink: var(--text-dark);
   --color-smoke: var(--text-muted);
@@ -33,6 +43,11 @@
   --color-line-light: var(--border-light);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-besley);
+  /* Anciennes couleurs (tâche 12) */
+  --color-brand: var(--primary-orange);
+  --color-brand-hover: var(--primary-orange-hover);
+  --color-brand-deep: var(--primary-orange-deep);
+  --color-wood: var(--wood-brown);
 }
 
 /* Entrée du hero en CSS : le texte s'affiche sans attendre l'hydratation */
@@ -82,8 +97,8 @@ body {
 }
 
 ::selection {
-  background: var(--primary-orange);
-  color: var(--text-dark);
+  background: var(--canard);
+  color: var(--text-light);
 }
 
 ::-webkit-scrollbar {
@@ -95,62 +110,208 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--wood-brown);
+  background: var(--canard-deep);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-orange);
+  background: var(--canard);
 }
 
-/* Conteneurs */
-.shell {
-  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+/* Apparition au scroll sans JavaScript (animations liées au scroll).
+   Navigateur sans support ou animations réduites : le contenu s'affiche directement. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
 }
 
-.shell-wide {
-  @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+@keyframes reveal-clip {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
 }
 
-/* Micro-label éditorial, précédé d'un filet court comme sur les rubans du logo */
-.eyebrow {
-  @apply inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-brand;
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    .reveal-image {
+      animation: reveal-clip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
 }
 
-.eyebrow::before {
-  content: "";
-  width: 1.75rem;
-  height: 1px;
-  background: currentColor;
-}
+@layer components {
+  /* Conteneurs */
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
 
-/* Boutons */
-.btn-primary,
-.btn-ghost-dark,
-.btn-ghost-light,
-.btn-ink {
-  @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-md px-6 text-sm font-bold tracking-wide transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
-}
+  .shell-wide {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
 
-.btn-primary {
-  @apply bg-brand text-ink hover:bg-brand-hover;
-}
+  /* Micro-label précédé d'un filet court. Couleur fixée par la section :
+     text-canard sur crème, text-canard-light sur noir, text-ivory sur bleu canard. */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em];
+  }
 
-.btn-ghost-dark {
-  @apply border border-ivory/30 text-ivory hover:border-ivory/60 hover:bg-ivory/5;
-}
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
 
-.btn-ghost-light {
-  @apply border border-ink/30 text-ink hover:border-ink/60 hover:bg-ink/5;
-}
+  /* Boutons */
+  .btn-primary,
+  .btn-cream,
+  .btn-ghost-dark,
+  .btn-ghost-light,
+  .btn-ink {
+    @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-sm px-6 text-sm font-bold tracking-wide transition-colors duration-200;
+  }
 
-.btn-ink {
-  @apply bg-ink text-ivory hover:bg-coal;
-}
+  /* Anneau de focus double (noir + bleu clair) : visible sur fond noir, crème ou bleu canard */
+  .btn-primary:focus-visible,
+  .btn-cream:focus-visible,
+  .btn-ghost-dark:focus-visible,
+  .btn-ghost-light:focus-visible,
+  .btn-ink:focus-visible {
+    outline: 2px solid transparent;
+    box-shadow:
+      0 0 0 2px var(--background-darker),
+      0 0 0 4px var(--canard-light);
+  }
 
-/* Grain photographique discret */
-.grain {
-  pointer-events: none;
-  opacity: 0.35;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  /* Sur fond noir ou crème */
+  .btn-primary {
+    @apply bg-canard text-ivory hover:bg-canard-deep;
+  }
+
+  /* Sur fond bleu canard */
+  .btn-cream {
+    @apply bg-cream text-ink hover:bg-ivory;
+  }
+
+  .btn-ghost-dark {
+    @apply border border-ivory/30 text-ivory hover:border-ivory/60 hover:bg-ivory/5;
+  }
+
+  .btn-ghost-light {
+    @apply border border-ink/30 text-ink hover:border-ink/60 hover:bg-ink/5;
+  }
+
+  /* Utilisé uniquement par Pricing.tsx, supprimé à la tâche 4 */
+  .btn-ink {
+    @apply bg-ink text-ivory hover:bg-coal;
+  }
+
+  /* Ruban à pointes en V, repris du logo (« Les Experts », numéro de téléphone) */
+  .ribbon {
+    --ribbon-bg: var(--canard);
+    --ribbon-tail: var(--canard-deep);
+    --ribbon-text: var(--text-light);
+    position: relative;
+    display: inline-block;
+    margin-inline: 1.25rem;
+    padding: 0.45rem 1.1rem;
+    background: var(--ribbon-bg);
+    color: var(--ribbon-text);
+    font-family: var(--font-besley), Georgia, serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  /* Pointes décalées vers le bas, côte à côte avec la bande : effet de ruban replié */
+  .ribbon::before,
+  .ribbon::after {
+    content: "";
+    position: absolute;
+    top: 0.35rem;
+    bottom: -0.35rem;
+    width: 1.25rem;
+    background: var(--ribbon-tail);
+  }
+
+  .ribbon::before {
+    right: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0.5rem 50%);
+  }
+
+  .ribbon::after {
+    left: 100%;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.5rem) 50%, 100% 100%, 0 100%);
+  }
+
+  .ribbon-chrome {
+    --ribbon-bg: var(--chrome);
+    --ribbon-tail: var(--chrome-shade);
+    --ribbon-text: var(--text-dark);
+  }
+
+  /* Double filet + losanges en haut et en bas, comme le cadre du logo.
+     --frame-bg = couleur de fond de la section (crème par défaut) : elle « coupe » les filets. */
+  .ornate-frame {
+    position: relative;
+    border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    outline: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+    outline-offset: -7px;
+  }
+
+  .ornate-frame::before,
+  .ornate-frame::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--canard);
+    box-shadow: 0 0 0 0.375rem var(--frame-bg, var(--background-light));
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .ornate-frame::before {
+    top: -0.25rem;
+  }
+
+  .ornate-frame::after {
+    bottom: -0.25rem;
+  }
+
+  /* Bande de carreaux de ciment : le sol du salon */
+  .tiles {
+    height: 1.5rem;
+    background-size: 1.5rem 1.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%23f3ede1'/%3E%3Cg fill='%23171513'%3E%3Ccircle r='11'/%3E%3Ccircle cx='48' r='11'/%3E%3Ccircle cy='48' r='11'/%3E%3Ccircle cx='48' cy='48' r='11'/%3E%3Cpath d='M24 9c5 7 5 9 0 15c-5-6-5-8 0-15zM24 39c5-7 5-9 0-15c-5 6-5 8 0 15zM9 24c7-5 9-5 15 0c-6 5-8 5-15 0zM39 24c-7-5-9-5-15 0c6 5 8 5 15 0z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Médaillon en arche à double filet pour les portraits */
+  .medallion {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgb(247 244 239 / 0.35);
+    border-radius: 999px 999px 0.375rem 0.375rem;
+    outline: 1px solid rgb(247 244 239 / 0.15);
+    outline-offset: 4px;
+  }
+
+  /* Grain photographique discret */
+  .grain {
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
 }
