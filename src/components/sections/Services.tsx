@@ -1,6 +1,7 @@
 import { BOOKING_URL } from "@/lib/site";
 
 // Une seule source pour les prestations : description de la catégorie, puis les prix.
+// Tarifs alignés sur Planity (vérifiés le 26/10/2026), la source utilisée par le salon pour les réservations.
 // Les prix sont aussi dans les données structurées de src/app/layout.tsx.
 const menu = [
   {
@@ -10,7 +11,7 @@ const menu = [
     items: [
       { name: "Shampoing + coupe + coiffage", duration: "30 min", price: "15 €" },
       { name: "Rasage du crâne traditionnel", duration: "30 min", price: "13 €" },
-      { name: "Coupe + taille de barbe", duration: "45 min", price: "22 €" },
+      { name: "Coupe + taille de la barbe", duration: "45 min", price: "22 €" },
     ],
   },
   {
@@ -18,7 +19,7 @@ const menu = [
     description:
       "Taille, contours et rasage traditionnel au coupe-chou, fini à la serviette chaude.",
     items: [
-      { name: "Taille de barbe + rasage", duration: "20 min", price: "10 €" },
+      { name: "Taille de la barbe + rasage", duration: "20 min", price: "10 €" },
       { name: "Rasage traditionnel", duration: "20 min", price: "10 €" },
     ],
   },
@@ -27,8 +28,8 @@ const menu = [
     description:
       "Gommage capillaire, black mask ou masque à l’argile. Le cuir chevelu respire, le visage aussi.",
     items: [
-      { name: "Gommage capillaire + black mask", duration: "45 min", price: "22 €" },
-      { name: "Gommage capillaire + masque à l’argile", duration: "30 min", price: "22 €" },
+      { name: "Gommage capillaire + black mask", duration: "45 min", price: "15 €" },
+      { name: "Gommage capillaire + masque à l’argile", duration: "30 min", price: "15 €" },
     ],
   },
   {
@@ -36,8 +37,8 @@ const menu = [
     description:
       "Lissage brésilien, coloration, nouveau style ou changement complet. On en parle, puis on le fait.",
     items: [
-      { name: "Lissage brésilien + coupe + coiffage", duration: "1 h 30", price: "22 €" },
-      { name: "Coloration + coupe + coiffage", duration: "1 h 30", price: "22 €" },
+      { name: "Lissage brésilien + shampoing + coupe + coiffage", duration: "1 h 30", price: "dès 75 €" },
+      { name: "Coloration + shampoing + coupe + coiffage", duration: "1 h 30", price: "dès 45 €" },
     ],
   },
 ];
