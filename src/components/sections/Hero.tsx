@@ -38,7 +38,7 @@ const Hero = () => {
               Une coupe précise.
               <br />
               Une équipe qui{" "}
-              <span className="whitespace-nowrap text-canard-light">vous connaît.</span>
+              <span className="sm:whitespace-nowrap text-canard-light">vous connaît.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]">
