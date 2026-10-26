@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+import { BOOKING_URL, PHONE_INTL, PHONE } from "@/lib/site";
 
 // Barre de réservation mobile : apparaît une fois le hero dépassé.
 const StickyBooking = () => {
@@ -38,9 +37,9 @@ const StickyBooking = () => {
               Réserver un créneau
             </a>
             <a
-              href="tel:0187000181"
+              href={`tel:${PHONE_INTL}`}
               className="btn-ghost-dark px-4!"
-              aria-label="Appeler le salon au 01 87 00 01 81"
+              aria-label={`Appeler le salon au ${PHONE}`}
             >
               <Phone className="h-5 w-5" aria-hidden />
             </a>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Besley } from "next/font/google";
 import MotionProvider from "@/components/MotionProvider";
+import { BOOKING_URL, PHONE, PHONE_INTL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -17,7 +18,7 @@ const besley = Besley({
 export const metadata: Metadata = {
   metadataBase: new URL("https://theexperts-barbershop.fr"),
   title: "The Experts Barber Shop - Salon de Coiffure Masculine à Pantin | Depuis 2010",
-  description: "Salon de coiffure masculine professionnel à Pantin depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au 01 87 00 01 81. Ouvert 7j/7.",
+  description: `Salon de coiffure masculine professionnel à Pantin depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au ${PHONE}. Ouvert 7j/7.`,
   keywords: "barbershop Pantin, coiffure masculine Pantin, rasage traditionnel, coupe homme, salon de coiffure 93, coiffeur Pantin, barber shop Paris, coiffure homme professionnel, The Experts Barber Shop",
   authors: [{ name: "The Experts Barber Shop" }],
   creator: "The Experts Barber Shop",
@@ -42,10 +43,10 @@ export const metadata: Metadata = {
     siteName: "The Experts Barber Shop",
     images: [
       {
-        url: "/LOGO.jpg",
-        width: 1200,
-        height: 630,
-        alt: "The Experts Barber Shop - Logo",
+        url: "/hero.jpg",
+        width: 1080,
+        height: 720,
+        alt: "L’équipe de The Experts Barber Shop dans le salon, à Pantin",
       },
     ],
   },
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Experts Barber Shop - Coiffure Masculine à Pantin",
     description: "Salon de coiffure masculine professionnel depuis 2010. Expertise et tradition au service de votre style.",
-    images: ["/LOGO.jpg"],
+    images: ["/hero.jpg"],
   },
   alternates: {
     canonical: "https://theexperts-barbershop.fr",
@@ -79,7 +80,7 @@ export default function RootLayout({
     "name": "The Experts Barber Shop",
     "description": "Salon de coiffure masculine professionnel depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires.",
     "url": "https://theexperts-barbershop.fr",
-    "telephone": "+33187000181",
+    "telephone": PHONE_INTL,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "101 Av. Jean Lolive",
@@ -96,7 +97,7 @@ export default function RootLayout({
     "priceRange": "€€",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Credit Card",
-    "image": "https://theexperts-barbershop.fr/LOGO.jpg",
+    "image": "https://theexperts-barbershop.fr/hero.jpg",
     "logo": "https://theexperts-barbershop.fr/LOGO.jpg",
     "foundingDate": "2010",
     "areaServed": {
@@ -148,14 +149,9 @@ export default function RootLayout({
         }
       ]
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "150"
-    },
     "sameAs": [
       "https://www.instagram.com/the_experts_barbershop/",
-      "https://www.planity.com/the-expert-93500-pantin-3v3"
+      BOOKING_URL
     ]
   };
 

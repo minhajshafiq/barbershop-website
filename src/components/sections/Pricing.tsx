@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+import { BOOKING_URL } from "@/lib/site";
 
 const menu = [
   {
@@ -52,7 +51,7 @@ const Pricing = () => {
           className="mb-14 flex flex-wrap items-end justify-between gap-6"
         >
           <div>
-            <p className="eyebrow mb-4">Tarifs</p>
+            <p className="eyebrow mb-4 text-brand-deep!">Tarifs</p>
             <h2
               id="tarifs-heading"
               className="font-display text-4xl leading-[1.05] font-bold uppercase sm:text-5xl lg:text-6xl"

@@ -1,17 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram } from "lucide-react";
-
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
-
-const navigation = [
-  { name: "Accueil", href: "/" },
-  { name: "Services", href: "#services" },
-  { name: "Tarifs", href: "#tarifs" },
-  { name: "Le salon", href: "#salon" },
-  { name: "L’équipe", href: "#equipe" },
-  { name: "Contact", href: "#contact" },
-];
+import { BOOKING_URL, navigation, PHONE_INTL, PHONE } from "@/lib/site";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -81,8 +71,8 @@ const Footer = () => {
               </p>
               <p>Tous les jours · 9h30 – 20h</p>
               <p>
-                <a href="tel:0187000181" className="transition-colors hover:text-brand">
-                  01 87 00 01 81
+                <a href={`tel:${PHONE_INTL}`} className="transition-colors hover:text-brand">
+                  {PHONE}
                 </a>
               </p>
             </address>

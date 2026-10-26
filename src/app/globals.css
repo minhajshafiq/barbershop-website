@@ -6,6 +6,8 @@
   --background-light: #f2eee7;
   --primary-orange: #d96827;
   --primary-orange-hover: #ed7a35;
+  /* Orange assombri pour le texte sur fond crème (contraste 4,96:1, WCAG AA) */
+  --primary-orange-deep: #a84a1a;
   --wood-brown: #5b3829;
   --text-light: #f7f4ef;
   --text-dark: #171513;
@@ -21,6 +23,7 @@
   --color-cream: var(--background-light);
   --color-brand: var(--primary-orange);
   --color-brand-hover: var(--primary-orange-hover);
+  --color-brand-deep: var(--primary-orange-deep);
   --color-wood: var(--wood-brown);
   --color-ivory: var(--text-light);
   --color-ink: var(--text-dark);
@@ -30,6 +33,36 @@
   --color-line-light: var(--border-light);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-besley);
+}
+
+/* Entrée du hero en CSS : le texte s'affiche sans attendre l'hydratation */
+@theme {
+  --animate-fade-up: fade-up 0.7s ease-out var(--delay, 0s) both;
+  --animate-fade-in: fade-in 1s ease-out var(--delay, 0s) both;
+  --animate-scroll-line: scroll-line 2s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes scroll-line {
+    0%,
+    100% {
+      transform: scaleY(0.3);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
 }
 
 html {

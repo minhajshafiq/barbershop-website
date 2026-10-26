@@ -42,7 +42,7 @@ const Reviews = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-4"
           >
-            <p className="eyebrow mb-4">Ils en parlent mieux que nous</p>
+            <p className="eyebrow mb-4 text-brand-deep!">Ils en parlent mieux que nous</p>
             <h2 id="avis-heading" className="font-display flex items-baseline gap-2">
               <span className="text-8xl leading-none font-bold sm:text-9xl">4,9</span>
               <span className="text-3xl font-medium text-stone">/5</span>
@@ -57,7 +57,7 @@ const Reviews = () => {
               href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-8 inline-flex items-center gap-2 text-sm font-bold text-brand transition-colors hover:text-brand-hover"
+              className="group mt-8 inline-flex items-center gap-2 text-sm font-bold text-brand-deep transition-colors hover:text-ink"
             >
               Voir tous les avis Google
               <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">

@@ -5,17 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
-
-const navigation = [
-  { name: "Accueil", href: "/" },
-  { name: "Services", href: "#services" },
-  { name: "Tarifs", href: "#tarifs" },
-  { name: "Le salon", href: "#salon" },
-  { name: "L’équipe", href: "#equipe" },
-  { name: "Contact", href: "#contact" },
-];
+import { BOOKING_URL, navigation, PHONE_INTL, PHONE } from "@/lib/site";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,11 +60,11 @@ const Header = () => {
           {/* Actions à droite */}
           <div className="flex items-center gap-4">
             <a
-              href="tel:0187000181"
+              href={`tel:${PHONE_INTL}`}
               className="hidden items-center gap-2 text-sm font-semibold text-ivory/80 transition-colors hover:text-ivory md:flex"
             >
               <Phone className="h-4 w-4 text-brand" aria-hidden />
-              01 87 00 01 81
+              {PHONE}
             </a>
             <div className="hidden sm:block">
               <a
@@ -137,7 +127,7 @@ const Header = () => {
                 >
                   Réserver un créneau
                 </a>
-                <a href="tel:0187000181" className="btn-ghost-dark px-4!" aria-label="Appeler le salon">
+                <a href={`tel:${PHONE_INTL}`} className="btn-ghost-dark px-4!" aria-label="Appeler le salon">
                   <Phone className="h-5 w-5" aria-hidden />
                 </a>
               </div>

@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
+import { BOOKING_URL } from "@/lib/site";
 
 // Pour afficher un vrai portrait : déposer la photo dans /public
 // (ex. /team-wael.jpg) puis renseigner `image` ci-dessous.

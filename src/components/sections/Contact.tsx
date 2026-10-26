@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import { BOOKING_URL, PHONE_INTL, PHONE } from "@/lib/site";
 
-const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
 const DIRECTIONS_URL =
   "https://www.google.com/maps/dir/?api=1&destination=101+Av.+Jean+Lolive,+93500+Pantin";
 
@@ -16,7 +16,7 @@ const details = [
   {
     icon: Phone,
     title: "Téléphone",
-    lines: ["01 87 00 01 81"],
+    lines: [PHONE],
   },
   {
     icon: MapPin,
@@ -67,7 +67,7 @@ const Contact = () => {
                 Réserver maintenant
                 <span aria-hidden>→</span>
               </a>
-              <a href="tel:0187000181" className="btn-ghost-dark">
+              <a href={`tel:${PHONE_INTL}`} className="btn-ghost-dark">
                 <Phone className="h-4 w-4" aria-hidden />
                 Appeler le salon
               </a>
@@ -93,7 +93,7 @@ const Contact = () => {
 
             {/* Actions rapides mobile */}
             <div className="mt-10 grid grid-cols-3 gap-3 sm:hidden">
-              <a href="tel:0187000181" className="btn-ghost-dark flex-col gap-1 py-3 text-xs">
+              <a href={`tel:${PHONE_INTL}`} className="btn-ghost-dark flex-col gap-1 py-3 text-xs">
                 <Phone className="h-4 w-4" aria-hidden />
                 Appeler
               </a>
