@@ -1,7 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram } from "lucide-react";
 import { BOOKING_URL, navigation, PHONE_INTL, PHONE } from "@/lib/site";
+
+// lucide-react 1.x a retiré les logos de marque : tracé Instagram de Lucide (licence ISC) en inline
+const InstagramIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden>
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -88,7 +96,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-ivory/85 transition-colors hover:text-brand"
             >
-              <Instagram className="h-4 w-4" aria-hidden />
+              <InstagramIcon />
               @the_experts_barbershop
             </a>
           </div>
