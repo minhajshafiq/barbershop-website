@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 
@@ -57,12 +56,12 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
             <ul className="space-y-2.5">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <Link
+                  <a
                     href={item.href}
                     className="text-sm text-ivory/85 transition-colors hover:text-canard-light"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

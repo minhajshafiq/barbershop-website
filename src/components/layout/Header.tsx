@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone } from "lucide-react";
@@ -9,6 +9,8 @@ import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 const Header = ({ navigation }: { navigation: NavItem[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
@@ -21,7 +23,10 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
   useEffect(() => {
     if (!isMenuOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsMenuOpen(false);
+      if (event.key !== "Escape") return;
+      // Le menu devient inert : sans ça, le focus clavier retomberait sur <body>
+      if (menuRef.current?.contains(document.activeElement)) menuButtonRef.current?.focus();
+      setIsMenuOpen(false);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -55,14 +60,14 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
           {/* Navigation desktop */}
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
             {navigation.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
                 className="group relative text-sm font-semibold text-ivory/90 transition-colors duration-200 hover:text-ivory"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-canard-light transition-all duration-300 group-hover:w-full" />
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -86,6 +91,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
 
             {/* Bouton menu mobile */}
             <button
+              ref={menuButtonRef}
               className="-mr-2 flex h-11 w-11 items-center justify-center text-ivory lg:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-expanded={isMenuOpen}
@@ -98,10 +104,12 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
         </div>
       </div>
 
-      {/* Menu mobile : se déplie en CSS (grille 0fr → 1fr).
+      {/* Menu mobile : se déplie en CSS (grille 0fr → 1fr). Liens d’ancre natifs (balise a, pas le composant Link) :
+          le navigateur déplace le point de départ du clavier vers la section visée.
           inert quand il est fermé : ses liens sortent du parcours clavier. */}
       <div
         id="menu-mobile"
+        ref={menuRef}
         inert={!isMenuOpen}
         className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none lg:hidden ${
           isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
@@ -110,14 +118,14 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
         <div className="overflow-hidden">
           <nav className="shell flex flex-col border-t border-line-dark py-4" aria-label="Navigation mobile">
             {navigation.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
                 className="font-display block border-b border-line-dark py-3.5 text-lg tracking-wide text-ivory uppercase transition-colors hover:text-canard-light"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <div className="flex items-center gap-3 pt-5 pb-2">
               <a

@@ -7,7 +7,7 @@ export const PHONE_INTL = "+33187000181";
 export type NavItem = { name: string; href: string };
 
 export const navigation: NavItem[] = [
-  { name: "Accueil", href: "/" },
+  { name: "Accueil", href: "#top" },
   { name: "La carte", href: "#carte" },
   { name: "Le salon", href: "#salon" },
   { name: "L’équipe", href: "#equipe" },
