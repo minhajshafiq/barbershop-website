@@ -86,7 +86,7 @@ const Services = () => {
                             className="mx-1 flex-1 border-b border-dotted border-ink/50"
                             aria-hidden
                           />
-                          <span className="font-display shrink-0 text-xl font-bold whitespace-nowrap text-canard-deep tabular-nums">
+                          <span className="font-display shrink-0 text-xl font-bold whitespace-nowrap text-canard-deep">
                             {item.price}
                           </span>
                         </div>
