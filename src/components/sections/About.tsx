@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const stats = [
-  { value: "2010", label: "ouverture du salon" },
+  { value: "2023", label: "ouverture du salon" },
   { value: "5000+", label: "clients accueillis" },
   { value: "30 min", label: "en moyenne par coupe" },
   { value: "4,9/5", label: "sur Google" },
@@ -37,7 +37,7 @@ const About = () => {
     >
       <div className="shell-wide grid items-center gap-14 lg:grid-cols-12 lg:gap-12">
         <div className="reveal lg:col-span-5">
-          <p className="eyebrow mb-4 text-ivory">Depuis 2010</p>
+          <p className="eyebrow mb-4 text-ivory">Depuis 2023</p>
           <h2
             id="salon-heading"
             className="font-display text-4xl leading-[1.05] font-bold uppercase sm:text-5xl"
@@ -46,7 +46,7 @@ const About = () => {
           </h2>
 
           <p className="mt-6 leading-relaxed text-ivory/85">
-            Depuis 2010, The Experts Barber Shop accueille ses clients au 101 avenue
+            Depuis 2023, The Experts Barber Shop accueille ses clients au 101 avenue
             Jean-Lolive, à Pantin. Six fauteuils, une déco inspirée des motos
             vintage, une ambiance musicale qui donne le ton — et des barbiers qui
             prennent le temps de comprendre ce que vous voulez avant de sortir la

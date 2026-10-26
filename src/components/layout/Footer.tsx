@@ -84,7 +84,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
                   </li>
                 ))}
               </ul>
-              <p>Barber shop de quartier, depuis 2010.</p>
+              <p>Barber shop de quartier, depuis 2023.</p>
             </address>
           </div>
 

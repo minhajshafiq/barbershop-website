@@ -16,8 +16,8 @@ const besley = Besley({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theexperts-barbershop.fr"),
-  title: "The Experts Barber Shop - Salon de Coiffure Masculine à Pantin | Depuis 2010",
-  description: `Salon de coiffure masculine professionnel à Pantin depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au ${PHONE}. Ouvert 7j/7.`,
+  title: "The Experts Barber Shop - Salon de Coiffure Masculine à Pantin | Depuis 2023",
+  description: `Salon de coiffure masculine professionnel à Pantin depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au ${PHONE}. Ouvert 7j/7.`,
   keywords: "barbershop Pantin, coiffure masculine Pantin, rasage traditionnel, coupe homme, salon de coiffure 93, coiffeur Pantin, barber shop Paris, coiffure homme professionnel, The Experts Barber Shop",
   authors: [{ name: "The Experts Barber Shop" }],
   creator: "The Experts Barber Shop",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "The Experts Barber Shop - Coiffure Masculine d'Exception à Pantin",
-    description: "Salon de coiffure masculine professionnel depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires. Expertise et tradition au service de votre style.",
+    description: "Salon de coiffure masculine professionnel depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Expertise et tradition au service de votre style.",
     type: "website",
     locale: "fr_FR",
     url: "https://theexperts-barbershop.fr",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Experts Barber Shop - Coiffure Masculine à Pantin",
-    description: "Salon de coiffure masculine professionnel depuis 2010. Expertise et tradition au service de votre style.",
+    description: "Salon de coiffure masculine professionnel depuis 2023. Expertise et tradition au service de votre style.",
     images: ["/hero.jpg"],
   },
   alternates: {
@@ -77,7 +77,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "HairSalon",
     "name": "The Experts Barber Shop",
-    "description": "Salon de coiffure masculine professionnel depuis 2010. Coupes modernes, rasage traditionnel, soins capillaires.",
+    "description": "Salon de coiffure masculine professionnel depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires.",
     "url": "https://theexperts-barbershop.fr",
     "telephone": PHONE_INTL,
     "address": {
@@ -98,7 +98,7 @@ export default function RootLayout({
     "paymentAccepted": "Cash, Credit Card",
     "image": "https://theexperts-barbershop.fr/hero.jpg",
     "logo": "https://theexperts-barbershop.fr/LOGO.jpg",
-    "foundingDate": "2010",
+    "foundingDate": "2023",
     "areaServed": {
       "@type": "City",
       "name": "Pantin"

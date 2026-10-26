@@ -68,7 +68,7 @@ const Services = () => {
           {/* Carte imprimée dans un cadre ornemental, comme le logo */}
           <div className="ornate-frame p-7 sm:p-11 lg:col-span-8">
             <p className="font-display text-center text-sm font-medium tracking-[0.3em] text-ink/70 uppercase">
-              Les Experts · Pantin
+              The Experts · Pantin
             </p>
             <div className="mt-9 grid gap-10 sm:grid-cols-2 sm:gap-x-12">
               {menu.map((section) => (

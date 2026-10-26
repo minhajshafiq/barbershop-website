@@ -5,7 +5,7 @@ const proofs = [
   { value: "4,9/5", label: "sur Google" },
   { value: "5000+", label: "clients accueillis" },
   { value: "7j/7", label: "ouvert tous les jours" },
-  { value: "2010", label: "année d’ouverture" },
+  { value: "2023", label: "année d’ouverture" },
 ];
 
 const Hero = () => {
@@ -30,9 +30,9 @@ const Hero = () => {
         {/* Contenu bas-gauche */}
         <div className="shell-wide relative z-10 pt-36 pb-16 sm:pb-20">
           <div className="max-w-4xl">
-            {/* Ruban « Les Experts », comme en haut du logo */}
+            {/* Ruban au nom du salon, comme en haut du logo */}
             <p className="ribbon mb-6 motion-safe:animate-fade-up [--delay:100ms]">
-              Les Experts · Pantin
+              The Experts · Pantin
             </p>
 
             <h1 className="font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase motion-safe:animate-fade-up [--delay:200ms]">
@@ -43,7 +43,7 @@ const Hero = () => {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]">
-              Barber shop de quartier depuis 2010. Coupe, barbe et soins dans une
+              Barber shop de quartier depuis 2023. Coupe, barbe et soins dans une
               ambiance conviviale, avec une attention particulière portée à chaque
               détail.
             </p>

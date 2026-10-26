@@ -200,7 +200,7 @@ body {
     @apply border border-ink/30 text-ink hover:border-ink/60 hover:bg-ink/5;
   }
 
-  /* Ruban à pointes en V, repris du logo (« Les Experts », numéro de téléphone) */
+  /* Ruban à pointes en V, repris du logo (nom du salon, numéro de téléphone) */
   .ribbon {
     --ribbon-bg: var(--canard);
     --ribbon-tail: var(--canard-deep);
