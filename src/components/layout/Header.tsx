@@ -50,7 +50,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
               width={56}
               height={56}
               className="rounded-full object-contain"
-              priority
+              loading="eager"
             />
             <span className="font-display hidden text-lg font-medium tracking-widest uppercase sm:block lg:hidden xl:block">
               The Experts

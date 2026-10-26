@@ -17,7 +17,8 @@ const Hero = () => {
           src="/hero.jpg"
           alt="L’équipe de The Experts Barber Shop réunie sur le canapé chesterfield du salon, à Pantin"
           fill
-          priority
+          loading="eager"
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover object-[62%_30%]"
         />
