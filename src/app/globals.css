@@ -40,8 +40,9 @@
   --font-display: var(--font-besley);
 }
 
-/* Entrée du hero en CSS : le texte s'affiche sans attendre l'hydratation */
-@theme {
+/* Entrée du hero en CSS : le texte s'affiche sans attendre l'hydratation.
+   inline : --delay est lu sur chaque élément (sinon figé à 0s sur :root, plus de décalage) */
+@theme inline {
   --animate-fade-up: fade-up 0.7s ease-out var(--delay, 0s) both;
   --animate-fade-in: fade-in 1s ease-out var(--delay, 0s) both;
   --animate-scroll-line: scroll-line 2s ease-in-out infinite;
