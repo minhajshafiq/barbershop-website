@@ -67,18 +67,17 @@ const Contact = () => {
 
             <dl className="mt-12 space-y-6 border-t border-line-dark pt-8">
               {details.map((detail) => (
-                <div key={detail.title} className="flex gap-4">
-                  <detail.icon className="mt-1 h-5 w-5 shrink-0 text-canard-light" aria-hidden />
-                  <div>
-                    <dt className="text-sm font-bold tracking-wide text-ivory uppercase">
-                      {detail.title}
-                    </dt>
-                    {detail.lines.map((line) => (
-                      <dd key={line} className="text-sm leading-relaxed text-smoke">
-                        {line}
-                      </dd>
-                    ))}
-                  </div>
+                // <dl> n'accepte que des groupes <div> de <dt>/<dd> : l'icône vit dans le <dt>
+                <div key={detail.title}>
+                  <dt className="flex items-center gap-4 text-sm font-bold tracking-wide text-ivory uppercase">
+                    <detail.icon className="h-5 w-5 shrink-0 text-canard-light" aria-hidden />
+                    {detail.title}
+                  </dt>
+                  {detail.lines.map((line) => (
+                    <dd key={line} className="pl-9 text-sm leading-relaxed text-smoke">
+                      {line}
+                    </dd>
+                  ))}
                 </div>
               ))}
             </dl>
