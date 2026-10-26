@@ -27,16 +27,17 @@ pnpm test     # test de la galerie
 
 | Contenu | Fichier |
 | --- | --- |
-| Lien Planity, téléphone, menu de navigation | `src/lib/site.ts` |
+| Lien Planity, téléphone, horaires, menu de navigation | `src/lib/site.ts` |
 | Prestations et tarifs (« La carte ») | `src/components/sections/Services.tsx` |
 | Photos de la galerie | `public/galerie/` (voir « Galerie des coupes ») |
 | Équipe (photos à déposer dans `public/`) | `src/components/sections/Team.tsx` |
 | Avis clients | `src/components/sections/Reviews.tsx` |
-| Horaires, adresse, accès | `src/components/sections/Contact.tsx`, `src/components/layout/Footer.tsx` |
+| Adresse, accès | `src/components/sections/Contact.tsx`, `src/components/layout/Footer.tsx` |
+| Mentions légales (éditeur, hébergeur) | `src/app/mentions-legales/page.tsx` |
 | SEO, Open Graph, données structurées | `src/app/layout.tsx` |
 | Couleurs et polices | `src/app/globals.css` |
 
-Les tarifs et le téléphone apparaissent aussi dans les données structurées de `src/app/layout.tsx` : les mettre à jour aux deux endroits.
+Les tarifs, le téléphone et les horaires apparaissent aussi dans les données structurées de `src/app/layout.tsx` : les mettre à jour aux deux endroits. Tarifs et horaires de référence : la page Planity du salon.
 
 ## Galerie des coupes
 

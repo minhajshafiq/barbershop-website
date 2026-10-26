@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BOOKING_URL, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
+import { BOOKING_URL, OPENING_HOURS, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 
 // lucide-react 1.x a retiré les logos de marque : tracé Instagram de Lucide (licence ISC) en inline
 const InstagramIcon = () => (
@@ -77,7 +77,13 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
                 <br />
                 93500 Pantin
               </p>
-              <p>Tous les jours · 9h30 – 20h</p>
+              <ul>
+                {OPENING_HOURS.map(({ days, hours }) => (
+                  <li key={days}>
+                    {days} · {hours}
+                  </li>
+                ))}
+              </ul>
               <p>Barber shop de quartier, depuis 2010.</p>
             </address>
           </div>
@@ -99,10 +105,11 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
         </div>
 
         {/* Filet fin avant les mentions */}
-        <div className="border-t border-line-dark py-6">
-          <p className="text-xs text-smoke">
-            © {currentYear} The Experts Barber Shop — Tous droits réservés.
-          </p>
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line-dark py-6 text-xs text-smoke">
+          <p>© {currentYear} The Experts Barber Shop — Tous droits réservés.</p>
+          <a href="/mentions-legales" className="transition-colors hover:text-ivory">
+            Mentions légales
+          </a>
         </div>
       </div>
     </footer>
