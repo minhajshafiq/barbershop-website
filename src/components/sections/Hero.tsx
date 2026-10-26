@@ -21,40 +21,33 @@ const Hero = () => {
           sizes="100vw"
           className="object-cover object-[62%_30%]"
         />
-        {/* Overlay sombre progressif : plus dense en bas et à gauche, visages préservés */}
-        <div className="absolute inset-0 bg-gradient-to-t from-coal via-coal/35 to-coal/15" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-r from-coal/70 via-transparent to-transparent" aria-hidden />
+        {/* Voile bleu canard très sombre : la couleur du salon, visages préservés */}
+        <div className="absolute inset-0 bg-gradient-to-t from-coal via-canard-deep/45 to-coal/10" aria-hidden />
+        <div className="absolute inset-0 bg-gradient-to-r from-canard-deep/80 via-canard-deep/20 to-transparent" aria-hidden />
         <div className="grain absolute inset-0" aria-hidden />
 
         {/* Contenu bas-gauche */}
         <div className="shell-wide relative z-10 pt-36 pb-16 sm:pb-20">
           <div className="max-w-4xl">
-            <p
-              className="eyebrow mb-5 motion-safe:animate-fade-up [--delay:100ms]"
-            >
-              The Experts Barber Shop · Pantin
+            {/* Ruban « Les Experts », comme en haut du logo */}
+            <p className="ribbon mb-6 motion-safe:animate-fade-up [--delay:100ms]">
+              Les Experts · Pantin
             </p>
 
-            <h1
-              className="font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase motion-safe:animate-fade-up [--delay:200ms]"
-            >
+            <h1 className="font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase motion-safe:animate-fade-up [--delay:200ms]">
               Une coupe précise.
               <br />
               Une équipe qui{" "}
-              <span className="text-brand whitespace-nowrap">vous connaît.</span>
+              <span className="whitespace-nowrap text-canard-light">vous connaît.</span>
             </h1>
 
-            <p
-              className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]"
-            >
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]">
               Barber shop de quartier depuis 2010. Coupe, barbe et soins dans une
               ambiance conviviale, avec une attention particulière portée à chaque
               détail.
             </p>
 
-            <div
-              className="mt-8 flex flex-wrap items-center gap-4 motion-safe:animate-fade-up [--delay:500ms]"
-            >
+            <div className="mt-8 flex flex-wrap items-center gap-4 motion-safe:animate-fade-up [--delay:500ms]">
               <a
                 href={BOOKING_URL}
                 target="_blank"
@@ -64,8 +57,8 @@ const Hero = () => {
                 Réserver un créneau
                 <span aria-hidden>→</span>
               </a>
-              <a href="#tarifs" className="btn-ghost-dark">
-                Voir les tarifs
+              <a href="#carte" className="btn-ghost-dark">
+                Voir la carte
               </a>
             </div>
           </div>
@@ -79,31 +72,29 @@ const Hero = () => {
           <span className="text-[10px] font-bold tracking-[0.3em] text-ivory/60 uppercase [writing-mode:vertical-rl]">
             Défiler
           </span>
-          <span
-            className="h-12 w-px origin-top bg-brand motion-safe:animate-scroll-line"
-          />
+          <span className="h-12 w-px origin-top bg-canard-light motion-safe:animate-scroll-line" />
         </div>
       </section>
 
-      {/* Bandeau de preuves sociales */}
-      <div className="border-y border-line-dark bg-coal">
-        <div className="shell-wide grid grid-cols-2 lg:grid-cols-4">
+      {/* Le sol du salon */}
+      <div className="tiles" aria-hidden />
+
+      {/* Bandeau de chiffres, séparés par des losanges comme sur le cadre du logo */}
+      <div className="bg-coal">
+        <ul className="shell-wide grid grid-cols-2 gap-y-5 py-6 lg:grid-cols-4">
           {proofs.map((proof, idx) => (
-            <div
-              key={proof.value}
-              className={`flex items-baseline gap-2 border-line-dark px-2 py-5 sm:px-6 ${
-                idx > 0 ? "lg:border-l" : ""
-              } ${idx % 2 === 1 ? "border-l lg:border-l" : ""}`}
-            >
-              <span className="font-display text-2xl font-medium text-brand">
-                {proof.value}
-              </span>
-              <span className="text-xs tracking-wide text-smoke uppercase">
-                {proof.label}
-              </span>
-            </div>
+            <li key={proof.value} className="relative flex items-baseline gap-2 lg:justify-center">
+              {idx > 0 && (
+                <span
+                  className="absolute top-1/2 left-0 hidden size-1.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-chrome/60 lg:block"
+                  aria-hidden
+                />
+              )}
+              <span className="font-display text-2xl font-medium text-chrome">{proof.value}</span>
+              <span className="text-xs tracking-wide text-smoke uppercase">{proof.label}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </>
   );
