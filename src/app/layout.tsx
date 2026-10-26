@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope, Besley } from "next/font/google";
-import MotionProvider from "@/components/MotionProvider";
 import { BOOKING_URL, PHONE, PHONE_INTL } from "@/lib/site";
 import "./globals.css";
 
@@ -168,7 +167,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} ${besley.variable} bg-night text-ivory antialiased`}
       >
-        <MotionProvider>{children}</MotionProvider>
+        {children}
       </body>
     </html>
   );

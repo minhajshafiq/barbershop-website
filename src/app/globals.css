@@ -20,11 +20,6 @@
   --text-muted-on-light: #6e675e;
   --border-dark: rgba(255, 255, 255, 0.12);
   --border-light: rgba(17, 16, 15, 0.12);
-  /* Anciennes couleurs : supprimées à la tâche 12, quand plus aucun composant ne les utilise */
-  --primary-orange: #d96827;
-  --primary-orange-hover: #ed7a35;
-  --primary-orange-deep: #a84a1a;
-  --wood-brown: #5b3829;
 }
 
 @theme inline {
@@ -43,11 +38,6 @@
   --color-line-light: var(--border-light);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-besley);
-  /* Anciennes couleurs (tâche 12) */
-  --color-brand: var(--primary-orange);
-  --color-brand-hover: var(--primary-orange-hover);
-  --color-brand-deep: var(--primary-orange-deep);
-  --color-wood: var(--wood-brown);
 }
 
 /* Entrée du hero en CSS : le texte s'affiche sans attendre l'hydratation */

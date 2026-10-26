@@ -8,7 +8,7 @@ La réservation passe par Planity.
 - Next.js 16 (App Router, Turbopack), page entièrement statique
 - React 19, TypeScript
 - Tailwind CSS v4
-- Framer Motion (animations au scroll), Lucide (icônes)
+- Animations en CSS uniquement (entrée du hero, apparition au scroll via `animation-timeline`), Lucide (icônes)
 - Polices Manrope (texte) et Besley (titres), auto-hébergées via `next/font`
 
 ## Démarrage
@@ -20,6 +20,7 @@ pnpm install
 pnpm dev      # http://localhost:3000
 pnpm build    # build de production
 pnpm lint
+pnpm test     # test de la galerie
 ```
 
 ## Où modifier quoi
@@ -27,8 +28,8 @@ pnpm lint
 | Contenu | Fichier |
 | --- | --- |
 | Lien Planity, téléphone, menu de navigation | `src/lib/site.ts` |
-| Tarifs | `src/components/sections/Pricing.tsx` |
-| Services | `src/components/sections/Services.tsx` |
+| Prestations et tarifs (« La carte ») | `src/components/sections/Services.tsx` |
+| Photos de la galerie | `public/galerie/` (voir « Galerie des coupes ») |
 | Équipe (photos à déposer dans `public/`) | `src/components/sections/Team.tsx` |
 | Avis clients | `src/components/sections/Reviews.tsx` |
 | Horaires, adresse, accès | `src/components/sections/Contact.tsx`, `src/components/layout/Footer.tsx` |
@@ -50,8 +51,12 @@ Déposer les photos dans `public/galerie/`, puis redéployer : elles apparaissen
 
 ## Design
 
-- Fond sombre `#11100f`, sections crème `#f2eee7`, orange `#d96827`
-- Sur fond crème, le texte orange utilise `text-brand-deep` (`#a84a1a`) pour rester lisible
+Identité tirée du logo (noir et crème, police Clarendon/Besley, rubans, cadre ornemental) et du salon (mur bleu canard, fauteuils chrome, carreaux de ciment).
+
+- Couleurs : noir `#11100f`, crème `#f3ede1`, bleu canard `#176579`, chrome `#c9cdd1`.
+- Sur fond noir, le texte d'accent est en `canard-light` (`#7fc4d4`) ou en `chrome`, jamais en `canard` (contraste insuffisant).
+- Sur fond bleu canard : bouton `.btn-cream` et texte secondaire `ivory/85` minimum.
+- Ornements dans `src/app/globals.css` : `.ribbon` (+ `.ribbon-chrome`), `.ornate-frame`, `.tiles`, `.medallion`, `.reveal`.
 
 ## Déploiement
 

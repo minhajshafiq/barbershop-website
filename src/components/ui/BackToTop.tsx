@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,27 +10,27 @@ const BackToTop = () => {
     const handleScroll = () => {
       setIsVisible(window.scrollY > window.innerHeight * 0.5);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.2 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Retour en haut de la page"
-          className="fixed bottom-6 right-6 z-40 hidden h-12 w-12 items-center justify-center rounded-full bg-brand text-ink transition-colors duration-300 hover:bg-brand-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand lg:flex"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      type="button"
+      inert={!isVisible}
+      onClick={scrollToTop}
+      aria-label="Retour en haut de la page"
+      className={`fixed right-6 bottom-6 z-40 hidden h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-canard text-ivory transition-[opacity,translate,background-color] duration-200 hover:bg-canard-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-canard-light motion-reduce:transition-none lg:flex ${
+        isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-5 opacity-0"
+      }`}
+    >
+      <ArrowUp className="h-5 w-5" />
+    </button>
   );
 };
 
