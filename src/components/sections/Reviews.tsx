@@ -1,9 +1,9 @@
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/search/?api=1&query=The+Experts+Barber+Shop+101+Av.+Jean+Lolive+93500+Pantin";
 
-// Uniquement de vrais avis Google : copier le texte exact et le prénom depuis la fiche du salon.
+// Uniquement de vrais avis Google : texte exact, prénom + initiale, mois de l'avis (la date est obligatoire, art. D111-17 C. conso).
 // Tableau vide = seule la note s'affiche. Publier de faux avis est une pratique commerciale trompeuse.
-const reviews: { text: string; author: string }[] = [];
+const reviews: { text: string; author: string; date: string }[] = [];
 
 // Fond bleu canard : note en crème (le chrome est réservé aux fonds noirs)
 const Reviews = () => {
@@ -25,7 +25,7 @@ const Reviews = () => {
             <p className="mt-4 text-xl tracking-[0.3em] text-ivory" aria-hidden>
               ★★★★★
             </p>
-            <p className="mt-2 text-sm text-ivory/85">Plus de 150 avis Google</p>
+            <p className="mt-2 text-sm text-ivory/85">Plus de 90 avis Google</p>
           </div>
 
           <div className="max-w-sm">
@@ -48,10 +48,10 @@ const Reviews = () => {
         {reviews.length > 0 && (
           <ul className="mt-14 grid gap-10 border-t border-ivory/20 pt-14 sm:grid-cols-2 lg:grid-cols-3">
             {reviews.map((review) => (
-              <li key={review.author} className="reveal">
+              <li key={review.text} className="reveal">
                 <blockquote>
                   <p className="font-display text-2xl leading-snug">« {review.text} »</p>
-                  <footer className="mt-3 text-sm text-ivory/85">{review.author}, avis Google</footer>
+                  <footer className="mt-3 text-sm text-ivory/85">{review.author} · avis Google, {review.date}</footer>
                 </blockquote>
               </li>
             ))}

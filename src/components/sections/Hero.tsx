@@ -2,7 +2,7 @@ import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 
 const proofs = [
-  { value: "4,9/5", label: "sur Google" },
+  { value: "90+", label: "avis Google" },
   { value: "5000+", label: "clients accueillis" },
   { value: "7j/7", label: "ouvert tous les jours" },
   { value: "2023", label: "année d’ouverture" },
@@ -62,6 +62,21 @@ const Hero = () => {
                 Voir la carte
               </a>
             </div>
+
+            {/* Note Google juste sous les boutons : la preuve au moment de réserver */}
+            <a
+              href="#avis"
+              className="group mt-8 inline-flex items-center gap-3 motion-safe:animate-fade-up [--delay:650ms]"
+            >
+              <span className="text-lg tracking-[0.15em] text-canard-light" aria-hidden>
+                ★★★★★
+              </span>
+              <span className="text-sm text-ivory/85">
+                <strong className="font-display text-xl font-bold text-ivory">4,9/5</strong>{" "}
+                sur Google
+                <span className="ml-2 underline-offset-4 group-hover:underline">Voir les avis</span>
+              </span>
+            </a>
           </div>
         </div>
 
