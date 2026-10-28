@@ -53,15 +53,15 @@ export default function MentionsLegales() {
         </Block>
 
         <Block title="Hébergement">
-          <p>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
+          <p>Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis</p>
           <p>
             <a
-              href="https://vercel.com"
+              href="https://www.cloudflare.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-ivory underline-offset-4 hover:underline"
             >
-              vercel.com
+              cloudflare.com
             </a>
           </p>
         </Block>

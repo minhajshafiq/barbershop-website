@@ -9,11 +9,11 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 import BackToTop from "@/components/ui/BackToTop";
 import StickyBooking from "@/components/ui/StickyBooking";
-import { getGalleryPhotos } from "@/lib/gallery";
 import { navigation } from "@/lib/site";
 
 export default function Home() {
-  const photos = getGalleryPhotos();
+  // Liste établie au build par next.config.ts
+  const photos: string[] = JSON.parse(process.env.GALLERY_PHOTOS ?? "[]");
   // Sans photo, ni section galerie ni lien « Galerie » dans les menus
   const nav = photos.length > 0 ? navigation : navigation.filter((item) => item.href !== "/#galerie");
 

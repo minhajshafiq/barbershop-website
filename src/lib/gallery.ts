@@ -7,12 +7,10 @@ const IMAGE_FILE = /\.(jpe?g|png|webp|avif)$/i;
 // Photos de la galerie, lues au build. Nommer les fichiers AAAA-MM-JJ-description.jpg :
 // le tri par nom décroissant affiche les plus récentes en premier.
 export function getGalleryPhotos(dir: string = GALLERY_DIR): string[] {
-  // Lu au build uniquement (page statique) : turbopackIgnore évite d'embarquer tout le projet
-  // dans le code serveur déployé, faute de pouvoir deviner `dir` à l'analyse.
-  if (!fs.existsSync(/*turbopackIgnore: true*/ dir)) return [];
+  if (!fs.existsSync(dir)) return [];
 
   // Fichiers cachés (.DS_Store, ._photo.jpg de macOS) : jamais affichés
-  const files = fs.readdirSync(/*turbopackIgnore: true*/ dir).filter((file) => !file.startsWith("."));
+  const files = fs.readdirSync(dir).filter((file) => !file.startsWith("."));
 
   const ignored = files.filter((file) => !IMAGE_FILE.test(file));
   if (ignored.length > 0) {
