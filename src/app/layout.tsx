@@ -16,7 +16,8 @@ const besley = Besley({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://theexperts-barbershop.fr"),
-  title: "The Experts Barber Shop - Salon de Coiffure Masculine à Pantin | Depuis 2023",
+  // « barbier » et « coiffeur homme » : ce que les gens tapent sur Google. 60 caractères max, sinon coupé
+  title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
   description: `Salon de coiffure masculine professionnel à Pantin depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au ${PHONE}. Ouvert 7j/7.`,
   keywords: "barbershop Pantin, coiffure masculine Pantin, rasage traditionnel, coupe homme, salon de coiffure 93, coiffeur Pantin, barber shop Paris, coiffure homme professionnel, The Experts Barber Shop",
   authors: [{ name: "The Experts Barber Shop" }],
@@ -63,8 +64,8 @@ export const metadata: Metadata = {
   other: {
     "geo.region": "FR-93",
     "geo.placename": "Pantin",
-    "geo.position": "48.8964;2.4093",
-    "ICBM": "48.8964, 2.4093",
+    "geo.position": "48.8924;2.4087",
+    "ICBM": "48.8924, 2.4087",
   },
 };
 
@@ -89,8 +90,8 @@ export default function RootLayout({
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": "48.8964",
-      "longitude": "2.4093"
+      "latitude": "48.8924",
+      "longitude": "2.4087"
     },
     "openingHours": ["Mo 10:00-20:30", "Tu-Th 09:30-20:30", "Fr-Sa 09:00-21:00", "Su 10:00-20:00"],
     "priceRange": "€€",
@@ -107,8 +108,8 @@ export default function RootLayout({
       "@type": "GeoCircle",
       "geoMidpoint": {
         "@type": "GeoCoordinates",
-        "latitude": "48.8964",
-        "longitude": "2.4093"
+        "latitude": "48.8924",
+        "longitude": "2.4087"
       },
       "geoRadius": "10000"
     },
