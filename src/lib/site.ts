@@ -1,6 +1,9 @@
 // Infos du salon partagées par plusieurs composants : à modifier ici uniquement.
 export const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
 
+// Fiche Google Business Profile du salon (lien stable par identifiant CID)
+export const GOOGLE_MAPS_URL = "https://maps.google.com/?cid=13864453879437084907";
+
 export const PHONE = "01 87 00 01 81";
 export const PHONE_INTL = "+33187000181";
 

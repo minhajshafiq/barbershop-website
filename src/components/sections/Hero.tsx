@@ -31,15 +31,17 @@ const Hero = () => {
         <div className="shell-wide relative z-10 pt-36 pb-16 sm:pb-20">
           <div className="max-w-4xl">
             {/* Ruban au nom du salon, comme en haut du logo */}
-            <p className="ribbon mb-6 motion-safe:animate-fade-up [--delay:100ms]">
-              The Experts · Pantin
-            </p>
-
-            <h1 className="font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase motion-safe:animate-fade-up [--delay:200ms]">
-              Une coupe précise.
-              <br />
-              Une équipe qui{" "}
-              <span className="sm:whitespace-nowrap text-canard-light">vous connaît.</span>
+            {/* Ruban dans le h1 : Google lit « barbier à Pantin » dans le titre principal */}
+            <h1>
+              <span className="ribbon mb-6 motion-safe:animate-fade-up [--delay:100ms]">
+                The Experts · Barbier à Pantin
+              </span>
+              <span className="block font-display text-[clamp(2.25rem,5.4vw,4.25rem)] leading-[1.04] font-bold uppercase motion-safe:animate-fade-up [--delay:200ms]">
+                Une coupe précise.
+                <br />
+                Une équipe qui{" "}
+                <span className="sm:whitespace-nowrap text-canard-light">vous connaît.</span>
+              </span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]">

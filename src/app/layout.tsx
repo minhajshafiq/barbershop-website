@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Besley } from "next/font/google";
-import { BOOKING_URL, PHONE, PHONE_INTL } from "@/lib/site";
+import { BOOKING_URL, GOOGLE_MAPS_URL, PHONE, PHONE_INTL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "The Experts Barber Shop - Coiffure Masculine d'Exception à Pantin",
+    title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
     description: "Salon de coiffure masculine professionnel depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Expertise et tradition au service de votre style.",
     type: "website",
     locale: "fr_FR",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Experts Barber Shop - Coiffure Masculine à Pantin",
+    title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
     description: "Salon de coiffure masculine professionnel depuis 2023. Expertise et tradition au service de votre style.",
     images: ["/hero.jpg"],
   },
@@ -149,9 +149,11 @@ export default function RootLayout({
         }
       ]
     },
+    "hasMap": GOOGLE_MAPS_URL,
     "sameAs": [
       "https://www.instagram.com/the_experts_barbershop/",
-      BOOKING_URL
+      BOOKING_URL,
+      GOOGLE_MAPS_URL
     ]
   };
 
