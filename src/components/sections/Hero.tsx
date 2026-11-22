@@ -2,10 +2,9 @@ import Image from "next/image";
 import { BOOKING_URL } from "@/lib/site";
 
 const proofs = [
-  { value: "90+", label: "avis Google" },
-  { value: "5000+", label: "clients accueillis" },
+  { value: "99", label: "avis Google" },
   { value: "7j/7", label: "ouvert tous les jours" },
-  { value: "2023", label: "année d’ouverture" },
+  { value: "2024", label: "année d’ouverture" },
 ];
 
 const Hero = () => {
@@ -45,7 +44,7 @@ const Hero = () => {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ivory/85 sm:text-lg motion-safe:animate-fade-up [--delay:350ms]">
-              Barber shop de quartier depuis 2023. Coupe, barbe et soins dans une
+              Barber shop de quartier depuis 2024. Coupe, barbe et soins dans une
               ambiance conviviale, avec une attention particulière portée à chaque
               détail.
             </p>
@@ -99,7 +98,7 @@ const Hero = () => {
 
       {/* Bandeau de chiffres, séparés par des losanges comme sur le cadre du logo */}
       <div className="bg-coal">
-        <ul className="shell-wide grid grid-cols-2 gap-y-5 py-6 lg:grid-cols-4">
+        <ul className="shell-wide grid grid-cols-2 gap-y-5 py-6 lg:grid-cols-3">
           {proofs.map((proof, idx) => (
             <li key={proof.value} className="relative flex items-baseline gap-2 lg:justify-center">
               {idx > 0 && (

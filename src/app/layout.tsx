@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://theexperts-barbershop.fr"),
   // « barbier » et « coiffeur homme » : ce que les gens tapent sur Google. 60 caractères max, sinon coupé
   title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
-  description: `Salon de coiffure masculine professionnel à Pantin depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Réservez votre rendez-vous au ${PHONE}. Ouvert 7j/7.`,
+  description: `Barbier à Pantin, 101 avenue Jean Lolive : coupe, dégradé, taille de barbe et rasage à l’ancienne. Ouvert 7j/7, réservation en ligne ou au ${PHONE}.`,
   keywords: "barbershop Pantin, coiffure masculine Pantin, rasage traditionnel, coupe homme, salon de coiffure 93, coiffeur Pantin, barber shop Paris, coiffure homme professionnel, The Experts Barber Shop",
   authors: [{ name: "The Experts Barber Shop" }],
   creator: "The Experts Barber Shop",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
-    description: "Salon de coiffure masculine professionnel depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires. Expertise et tradition au service de votre style.",
+    description: "Barbier à Pantin : coupe, dégradé, taille de barbe et rasage à l’ancienne. Ouvert 7j/7, réservation en ligne.",
     type: "website",
     locale: "fr_FR",
     url: "https://theexperts-barbershop.fr",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Experts Barber Shop · Barbier et coiffeur homme à Pantin",
-    description: "Salon de coiffure masculine professionnel depuis 2023. Expertise et tradition au service de votre style.",
+    description: "Barbier à Pantin : coupe, dégradé, taille de barbe et rasage à l’ancienne. Ouvert 7j/7.",
     images: ["/hero.jpg"],
   },
   alternates: {
@@ -78,7 +78,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "HairSalon",
     "name": "The Experts Barber Shop",
-    "description": "Salon de coiffure masculine professionnel depuis 2023. Coupes modernes, rasage traditionnel, soins capillaires.",
+    "description": "Barbier à Pantin : coupe, dégradé, taille de barbe et rasage à l’ancienne. Ouvert 7j/7.",
     "url": "https://theexperts-barbershop.fr",
     "telephone": PHONE_INTL,
     "address": {
@@ -99,7 +99,7 @@ export default function RootLayout({
     "paymentAccepted": "Cash, Credit Card",
     "image": "https://theexperts-barbershop.fr/hero.jpg",
     "logo": "https://theexperts-barbershop.fr/LOGO.jpg",
-    "foundingDate": "2023",
+    "foundingDate": "2024-01",
     "areaServed": {
       "@type": "City",
       "name": "Pantin"
