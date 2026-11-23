@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BOOKING_URL, OPENING_HOURS, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
+import { contentPages } from "@/lib/pages";
 
 // lucide-react 1.x a retiré les logos de marque : tracé Instagram de Lucide (licence ISC) en inline
 const InstagramIcon = () => (
@@ -61,6 +62,16 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
                     className="text-sm text-ivory/85 transition-colors hover:text-canard-light"
                   >
                     {item.name}
+                  </a>
+                </li>
+              ))}
+              {contentPages.map((page) => (
+                <li key={page.href}>
+                  <a
+                    href={page.href}
+                    className="text-sm text-ivory/85 transition-colors hover:text-canard-light"
+                  >
+                    {page.name}
                   </a>
                 </li>
               ))}
