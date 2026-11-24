@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BOOKING_URL, OPENING_HOURS, PHONE_INTL, PHONE, type NavItem } from "@/lib/site";
 import { contentPages } from "@/lib/pages";
+import CookieSettings from "@/components/ui/CookieSettings";
 
 // lucide-react 1.x a retiré les logos de marque : tracé Instagram de Lucide (licence ISC) en inline
 const InstagramIcon = () => (
@@ -121,6 +122,7 @@ const Footer = ({ navigation }: { navigation: NavItem[] }) => {
           <a href="/mentions-legales" className="transition-colors hover:text-ivory">
             Mentions légales
           </a>
+          <CookieSettings />
         </div>
       </div>
     </footer>

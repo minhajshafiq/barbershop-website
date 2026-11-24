@@ -27,3 +27,6 @@ export const navigation: NavItem[] = [
   { name: "Galerie", href: "/#galerie" },
   { name: "Contact", href: "/#contact" },
 ];
+
+// Identifiant de mesure GA4 (format G-XXXXXXXXXX). Vide = aucune mesure ni bannière.
+export const GA_MEASUREMENT_ID = "G-YQB0T9M1V7";

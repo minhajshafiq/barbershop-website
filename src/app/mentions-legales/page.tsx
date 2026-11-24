@@ -68,8 +68,12 @@ export default function MentionsLegales() {
 
         <Block title="Données personnelles et cookies">
           <p>
-            Ce site ne dépose aucun cookie et ne contient ni formulaire ni outil de
-            mesure d’audience : l’éditeur n’y collecte aucune donnée personnelle.
+            Ce site ne dépose aucun cookie sans votre accord et ne contient aucun
+            formulaire. Avec votre consentement, il utilise Google Analytics (Google
+            Ireland Limited) pour mesurer l’audience : pages vues, clics sur la
+            réservation, l’appel et l’itinéraire. Vous pouvez refuser, et modifier
+            votre choix à tout moment via « Gérer les cookies » en bas de page. Sans
+            accord, aucune mesure n’est faite.
           </p>
           <p>
             La carte Google Maps de la page d’accueil ne se charge que si vous cliquez

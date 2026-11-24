@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Besley } from "next/font/google";
 import { BOOKING_URL, GOOGLE_MAPS_URL, PHONE, PHONE_INTL } from "@/lib/site";
+import Analytics from "@/components/ui/Analytics";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -171,6 +172,7 @@ export default function RootLayout({
         className={`${manrope.variable} ${besley.variable} bg-night text-ivory antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
