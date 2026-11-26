@@ -1,6 +1,24 @@
 // Infos du salon partagées par plusieurs composants : à modifier ici uniquement.
 export const BOOKING_URL = "https://www.planity.com/the-expert-93500-pantin-3v3";
 
+// Clics utiles au salon, partagés avec les tests de suivi.
+export const getClickEvent = (href: string) => {
+  if (href.startsWith("tel:")) return "click_call";
+  if (href.startsWith(BOOKING_URL)) return "click_booking";
+  try {
+    const url = new URL(href);
+    if (
+      (url.protocol === "https:" || url.protocol === "http:") &&
+      (url.hostname === "maps.google.com" ||
+        ((url.hostname === "www.google.com" || url.hostname === "google.com") &&
+          (url.pathname === "/maps" || url.pathname.startsWith("/maps/"))))
+    ) return "click_directions";
+  } catch {
+    // Les ancres et liens relatifs ne sont pas des actions Google Maps.
+  }
+  return null;
+};
+
 // Fiche Google Business Profile du salon (lien stable par identifiant CID)
 export const GOOGLE_MAPS_URL = "https://maps.google.com/?cid=13864453879437084907";
 

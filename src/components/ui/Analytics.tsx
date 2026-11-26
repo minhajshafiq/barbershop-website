@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Script from "next/script";
-import { BOOKING_URL, GA_MEASUREMENT_ID } from "@/lib/site";
+import { getClickEvent, GA_MEASUREMENT_ID } from "@/lib/site";
 
 type Consent = "granted" | "denied";
 
@@ -15,14 +15,6 @@ declare global {
     gtag: (...args: unknown[]) => void;
   }
 }
-
-// Clics utiles au salon : réservation Planity, appel, itinéraire (fiche Google)
-const getClickEvent = (href: string) => {
-  if (href.startsWith("tel:")) return "click_call";
-  if (href.startsWith(BOOKING_URL)) return "click_booking";
-  if (href.includes("maps.google.com")) return "click_directions";
-  return null;
-};
 
 export const reopenConsent = () => window.dispatchEvent(new Event(REOPEN_EVENT));
 
